@@ -1,46 +1,101 @@
-import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+public class RisikoverwaltungUnsicher{
 
-public class Risikoverwaltung{
-
-    private Risiko[] risikos;
+    LinkedList risikos = new LinkedList();
 
     public void aufnehmen(Risiko r) {
-        //Collection c = null;
         
-        if(risikos == null){
-            risikos = new Risiko[1];
-            risikos[0] = r;
-        }
-          else{
-            Risiko[] nRisikos = new Risiko[risikos.length+1];
-            for(int i = 0; i < risikos.length; i++)
-                nRisikos[i] = risikos[i];
-            nRisikos[nRisikos.length-1] = r;
-            risikos = nRisikos;
-          }
+        risikos.add(r);
     }
 
     public void zeigeRisiken() {
-        
-        for(int i = 0; i < risikos.length; i++)
-            risikos[i].druckeDaten();
+
+        Iterator it = risikos.iterator();
+
+        while(it.hasNext()){
+
+            Object o = it.next();
+
+            if(o instanceof AkzeptablesRisiko){
+
+                AkzeptablesRisiko ak = (AkzeptablesRisiko) o;
+                ak.druckeDaten();
+            }
+
+              else if(o instanceof InakzeptablesRisiko){
+
+                InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
+                ak.druckeDaten();
+              }
+
+                else if(o instanceof ExtremesRisiko){
+
+                    ExtremesRisiko ak = (ExtremesRisiko) o;
+                    ak.druckeDaten();
+                }
+        }
     }
 
     public void sucheRisikoMitmaxRueckstellung() {
        
-        Risiko nr = risikos[0];
-        for(int i = 1; i < risikos.length; i++)
-            if(nr.ermittleRueckstellung() > risikos[i].ermittleRueckstellung())
-                nr = risikos[i];
-        nr.druckeDaten();
+        Iterator it = risikos.iterator();
+        Risiko max = (Risiko) risikos.getFirst();
+
+        while(it.hasNext()){
+
+            Object o = it.next();
+        
+            if(o instanceof AkzeptablesRisiko){
+                AkzeptablesRisiko ak = (AkzeptablesRisiko) o;
+
+                if(ak.ermittleRueckstellung() >= max.ermittleRueckstellung())
+                    max = ak;
+            }
+
+              else if(o instanceof InakzeptablesRisiko){
+                InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
+
+                if(ak.ermittleRueckstellung() >= max.ermittleRueckstellung())
+                    max = ak;
+            }
+
+              else if(o instanceof ExtremesRisiko){
+                    ExtremesRisiko ak = (ExtremesRisiko) o;
+
+                    if(ak.ermittleRueckstellung() >= max.ermittleRueckstellung())
+                        max = ak;                
+                }
+
+            if(max instanceof AkzeptablesRisiko)
+                max.druckeDaten();
+    
+              else if(max instanceof InakzeptablesRisiko)
+                max.druckeDaten();
+
+              else if(max instanceof ExtremesRisiko)
+                max.druckeDaten();
+        }
     }
 
     public float berechneSummeRueckstellungen() {
 
+        Iterator it = risikos.iterator();
         float summe = 0.0f;
-        for(int i = 0; i < risikos.length; i++)
-            summe += risikos[i].ermittleRueckstellung();
-    
+
+        while(it.hasNext()){
+
+            Object o = it.next();
+
+            if(o instanceof InakzeptablesRisiko){
+                InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
+                summe += ak.ermittleRueckstellung();
+            }
+              else if(o instanceof ExtremesRisiko){
+                ExtremesRisiko ak = (ExtremesRisiko) o;
+                summe += ak.ermittleRueckstellung();
+            }       
+        }
         return summe;
     }
 }

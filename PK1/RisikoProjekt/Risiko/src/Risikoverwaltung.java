@@ -1,46 +1,36 @@
-import java.util.Collection;
-
+import java.util.LinkedList;
 public class Risikoverwaltung{
 
-    private Risiko[] risikos;
+    LinkedList<Risiko> risikos = new LinkedList<>();
 
     public void aufnehmen(Risiko r) {
-        //Collection c = null;
         
-        if(risikos == null){
-            risikos = new Risiko[1];
-            risikos[0] = r;
-        }
-          else{
-            Risiko[] nRisikos = new Risiko[risikos.length+1];
-            for(int i = 0; i < risikos.length; i++)
-                nRisikos[i] = risikos[i];
-            nRisikos[nRisikos.length-1] = r;
-            risikos = nRisikos;
-          }
+        risikos.add(r);
     }
 
     public void zeigeRisiken() {
         
-        for(int i = 0; i < risikos.length; i++)
-            risikos[i].druckeDaten();
+        for (Risiko a: risikos){
+            a.druckeDaten();
+        }
     }
 
     public void sucheRisikoMitmaxRueckstellung() {
        
-        Risiko nr = risikos[0];
-        for(int i = 1; i < risikos.length; i++)
-            if(nr.ermittleRueckstellung() > risikos[i].ermittleRueckstellung())
-                nr = risikos[i];
-        nr.druckeDaten();
+        Risiko max = risikos.getFirst();
+        for (Risiko a: risikos){
+            if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
+                max = a;
+        }
+        max.druckeDaten();
     }
 
     public float berechneSummeRueckstellungen() {
 
         float summe = 0.0f;
-        for(int i = 0; i < risikos.length; i++)
-            summe += risikos[i].ermittleRueckstellung();
-    
+        for (Risiko a: risikos)
+            summe += a.ermittleRueckstellung();
+       
         return summe;
     }
 }

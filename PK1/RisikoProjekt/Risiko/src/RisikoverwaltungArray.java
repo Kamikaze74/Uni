@@ -1,11 +1,9 @@
-import java.util.Collection;
-
-public class Risikoverwaltung <E> {
+public class RisikoverwaltungArray{
 
     private Risiko[] risikos;
 
     public void aufnehmen(Risiko r) {
-        Collection <E> c = null;
+        //Collection c = null;
         
         if(risikos == null){
             risikos = new Risiko[1];

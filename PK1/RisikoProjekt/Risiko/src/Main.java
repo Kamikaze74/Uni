@@ -11,7 +11,7 @@ public class Main {
         InakzeptablesRisiko ir1 = new InakzeptablesRisiko("Kernreaktor-Leck", 0.05f, 500000f, "Stilllegung");
 
         // Risikoverwaltung erstellen und Risiken hinzufügen
-        Risikoverwaltung verwaltung = new Risikoverwaltung();
+        RisikoverwaltungArray verwaltung = new RisikoverwaltungArray();
         verwaltung.aufnehmen(ar1);
         verwaltung.aufnehmen(ar2);
         verwaltung.aufnehmen(ar3);
