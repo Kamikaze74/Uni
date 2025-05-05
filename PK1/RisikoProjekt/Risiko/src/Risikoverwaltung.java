@@ -1,7 +1,9 @@
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
-public class Risikoverwaltung{
+public class Risikoverwaltung {
 
-    LinkedList<Risiko> risikos = new LinkedList<>();
+    LinkedList<Risiko> risikos = new LinkedList<Risiko>();
 
     public void aufnehmen(Risiko r) {
         
@@ -10,8 +12,10 @@ public class Risikoverwaltung{
 
     public void zeigeRisiken() {
         
+        aufSortieren();
+
         for (Risiko a: risikos){
-            a.druckeDaten();
+            (a).druckeDaten();
         }
     }
 
@@ -32,5 +36,15 @@ public class Risikoverwaltung{
             summe += a.ermittleRueckstellung();
        
         return summe;
+    }
+
+    public void aufSortieren(){
+
+        Collections.sort(risikos, new Comparator<Risiko>() {
+        public int compare(Risiko p1, Risiko p2) {
+                return Float.compare(p1.berechneRisikowert(), p2.berechneRisikowert());
+                // frag wegen den typen zb Float
+            }
+        });
     }
 }
