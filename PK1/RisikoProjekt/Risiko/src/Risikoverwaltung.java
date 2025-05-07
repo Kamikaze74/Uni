@@ -10,23 +10,26 @@ public class Risikoverwaltung {
         risikos.add(r);
     }
 
-    public void zeigeRisiken() {
+    public String zeigeRisiken() {
         
         aufSortieren();
+        String ausgabe = "";
 
         for (Risiko a: risikos){
-            (a).druckeDaten();
+            ausgabe += (a).druckeDaten();
         }
+
+        return ausgabe;
     }
 
-    public void sucheRisikoMitmaxRueckstellung() {
+    public String sucheRisikoMitmaxRueckstellung() {
 
         Risiko max = risikos.getFirst();
         for (Risiko a: risikos){
             if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
                 max = a;
         }
-        max.druckeDaten();
+        return max.druckeDaten();
     }
 
     public float berechneSummeRueckstellungen() {
@@ -38,12 +41,11 @@ public class Risikoverwaltung {
         return summe;
     }
 
-    public void aufSortieren(){
+    private void aufSortieren(){
 
         Collections.sort(risikos, new Comparator<Risiko>() {
         public int compare(Risiko p1, Risiko p2) {
                 return Float.compare(p1.berechneRisikowert(), p2.berechneRisikowert());
-                // frag wegen den typen zb Float
             }
         });
     }

@@ -46,5 +46,5 @@ public abstract class Risiko {
     }
     
     public abstract float ermittleRueckstellung();
-    public abstract void druckeDaten();
+    public abstract String druckeDaten();
 }

@@ -23,11 +23,11 @@ public class RisikoverwaltungUnsicher{
                 ak.druckeDaten();
             }
 
-              else if(o instanceof InakzeptablesRisiko){
+            else if(o instanceof InakzeptablesRisiko){
 
                 InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
                 ak.druckeDaten();
-              }
+            }
 
                 else if(o instanceof ExtremesRisiko){
 
@@ -38,7 +38,7 @@ public class RisikoverwaltungUnsicher{
     }
 
     public void sucheRisikoMitmaxRueckstellung() {
-       
+    
         Iterator it = risikos.iterator();
         Risiko max = (Risiko) risikos.getFirst();
 
@@ -53,27 +53,27 @@ public class RisikoverwaltungUnsicher{
                     max = ak;
             }
 
-              else if(o instanceof InakzeptablesRisiko){
+            else if(o instanceof InakzeptablesRisiko){
                 InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
 
                 if(ak.ermittleRueckstellung() >= max.ermittleRueckstellung())
                     max = ak;
             }
 
-              else if(o instanceof ExtremesRisiko){
+            else if(o instanceof ExtremesRisiko){
                     ExtremesRisiko ak = (ExtremesRisiko) o;
 
                     if(ak.ermittleRueckstellung() >= max.ermittleRueckstellung())
-                        max = ak;                
+                        max = ak;
                 }
 
             if(max instanceof AkzeptablesRisiko)
                 max.druckeDaten();
     
-              else if(max instanceof InakzeptablesRisiko)
+            else if(max instanceof InakzeptablesRisiko)
                 max.druckeDaten();
 
-              else if(max instanceof ExtremesRisiko)
+            else if(max instanceof ExtremesRisiko)
                 max.druckeDaten();
         }
     }
@@ -91,10 +91,10 @@ public class RisikoverwaltungUnsicher{
                 InakzeptablesRisiko ak = (InakzeptablesRisiko) o;
                 summe += ak.ermittleRueckstellung();
             }
-              else if(o instanceof ExtremesRisiko){
+            else if(o instanceof ExtremesRisiko){
                 ExtremesRisiko ak = (ExtremesRisiko) o;
                 summe += ak.ermittleRueckstellung();
-            }       
+            }
         }
         return summe;
     }

@@ -9,13 +9,13 @@ public class RisikoverwaltungArray{
             risikos = new Risiko[1];
             risikos[0] = r;
         }
-          else{
+        else{
             Risiko[] nRisikos = new Risiko[risikos.length+1];
             for(int i = 0; i < risikos.length; i++)
                 nRisikos[i] = risikos[i];
             nRisikos[nRisikos.length-1] = r;
             risikos = nRisikos;
-          }
+        }
     }
 
     public void zeigeRisiken() {
@@ -25,7 +25,7 @@ public class RisikoverwaltungArray{
     }
 
     public void sucheRisikoMitmaxRueckstellung() {
-       
+    
         Risiko nr = risikos[0];
         for(int i = 1; i < risikos.length; i++)
             if(nr.ermittleRueckstellung() > risikos[i].ermittleRueckstellung())

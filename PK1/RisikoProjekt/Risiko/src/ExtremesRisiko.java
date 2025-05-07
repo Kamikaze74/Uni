@@ -1,3 +1,4 @@
+import java.util.Formatter;
 import java.util.Objects;
 
 public class ExtremesRisiko extends InakzeptablesRisiko {
@@ -17,9 +18,10 @@ public class ExtremesRisiko extends InakzeptablesRisiko {
         return versicherungsbeitrag;
     }
     @Override
-    public void druckeDaten(){
-        System.out.printf("Id %d %s \"%s\" aus %d/%d;\n Versicherungsbeitrag %.2f Risikowert %.2f; Rueckstellung %.2f; Maßname %s;\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.getVersicherungsbeitrag() ,this.berechneRisikowert(), this.ermittleRueckstellung(), this.getMassname());
-
+    public String druckeDaten() {
+        Formatter formatter = new Formatter();
+        formatter.format("Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Versicherungsbeitrag %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.getVersicherungsbeitrag(), this.getMassname());
+        return formatter.toString();
     }
     @Override
     public boolean equals(Object o) {
