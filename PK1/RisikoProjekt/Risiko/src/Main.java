@@ -11,13 +11,13 @@ public class Main {
         InakzeptablesRisiko ir1 = new InakzeptablesRisiko("Kernreaktor-Leck", 0.05f, 500000f, "Stilllegung");
 
         // Risikoverwaltung erstellen und Risiken hinzufügen
-        RisikoverwaltungArray verwaltung = new RisikoverwaltungArray();
-        verwaltung.aufnehmen(ar1);
-        verwaltung.aufnehmen(ar2);
-        verwaltung.aufnehmen(ar3);
-        verwaltung.aufnehmen(er1);
+        Risikoverwaltung verwaltung = new Risikoverwaltung();
         verwaltung.aufnehmen(er2);
+        verwaltung.aufnehmen(ar2);
+        verwaltung.aufnehmen(ar1);
+        verwaltung.aufnehmen(er1);
         verwaltung.aufnehmen(ir1);
+        verwaltung.aufnehmen(ar3);
 
         // Alle Risiken anzeigen
         System.out.println("\n--- Alle Risiken ---");
@@ -33,5 +33,9 @@ public class Main {
         System.out.printf("Summe: %.2f\n", summe);
 
         System.out.println(ar1.equals(er1) + "" + ar1.equals(ar1));
+
+
+        Menu m = new Menu(verwaltung);
+
     }
 }

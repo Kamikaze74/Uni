@@ -20,7 +20,7 @@ public class Risikoverwaltung {
     }
 
     public void sucheRisikoMitmaxRueckstellung() {
-       
+
         Risiko max = risikos.getFirst();
         for (Risiko a: risikos){
             if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
@@ -34,7 +34,7 @@ public class Risikoverwaltung {
         float summe = 0.0f;
         for (Risiko a: risikos)
             summe += a.ermittleRueckstellung();
-       
+
         return summe;
     }
 
