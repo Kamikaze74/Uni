@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 
+
 public abstract class Risiko {
     
     private static int count = 0;

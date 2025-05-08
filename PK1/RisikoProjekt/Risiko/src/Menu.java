@@ -30,7 +30,6 @@ private Risikoverwaltung menuPrint(){
                 break;
 
             case 2:
-                verwaltung.zeigeRisiken();
                 JOptionPane.showMessageDialog(null, verwaltung.zeigeRisiken());
                 break;
 
@@ -39,7 +38,6 @@ private Risikoverwaltung menuPrint(){
                 break;
             
             case 4:
-                verwaltung.berechneSummeRueckstellungen();
                 JOptionPane.showMessageDialog(null, verwaltung.berechneSummeRueckstellungen());
                 break;
             }
@@ -48,21 +46,47 @@ private Risikoverwaltung menuPrint(){
     }
 
     private Risiko add(){
-        String bh = JOptionPane.showInputDialog(null, "Bezeichnung");
-        float ew = Float.parseFloat(JOptionPane.showInputDialog(null, "Eintrittswahrscheinlichkeit"));
-        float kis = Float.parseFloat(JOptionPane.showInputDialog(null, "kosten im Schadensfall"));
 
+        String bh = checkInput("Bezeichnung", String.class);
+        float ew = checkInput("Eintrittswahrscheinlichkeit", Float.class);
+        float kis = checkInput("kosten im Schadensfall", Float.class);
         AkzeptablesRisiko rs = new AkzeptablesRisiko(bh, ew, kis);
 
         if(rs.getKosten_im_schadenfall() >= 1000000.00){
-            String mn = JOptionPane.showInputDialog(null, "Es handelt sich um ein extremes Risiko.\nEine Maßnahme muss definiert werden");
-            float vb = Float.parseFloat(JOptionPane.showInputDialog(null, "und den Versicherungsbeitrag"));
+            String mn = checkInput("Es handelt sich um ein extremes Risiko.\nEine Maßnahme muss definiert werden", String.class);
+            float vb = checkInput("und den Versicherungsbeitrag", Float.class);
             return new ExtremesRisiko(bh, ew, kis, mn, vb);
         }
         else if(rs.berechneRisikowert() >= 10000.00){
-            String mn = JOptionPane.showInputDialog(null, "Es handelt sich um ein inakzeptabeles Risiko.\nEine Maßnahme muss definiert werden");
+            String mn = checkInput("Es handelt sich um ein inakzeptabeles Risiko.\nEine Maßnahme muss definiert werden", String.class);
             return new InakzeptablesRisiko(bh, ew, kis, mn);
         }
+
         return rs;
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> T checkInput(String prompt, Class<T> type) { // <T> für eine belieblieges T // T rückgabewert
+        while (true) {
+            try {
+                String input = JOptionPane.showInputDialog(null, prompt);
+
+                if(input == null){ // something weird with null
+                    JOptionPane.showMessageDialog(null, "Eingabe abgebrochen.");
+                    throw new NullPointerException("Benutzer hat die Eingabe abgebrochen.");
+                }
+
+                if (type == String.class) {
+                    return (T) input;
+                } else if (type == Float.class) {
+                    return (T) Float.valueOf(Float.parseFloat(input));
+                } else {
+                    throw new IllegalArgumentException("Nicht unterstützter Typ: " + type);
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ungültige Eingabe! Bitte eine gültige Kommazahl eingeben.");
+            }
+        }
     }
 }
