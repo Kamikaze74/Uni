@@ -321,9 +321,7 @@ public class Baum<T extends Comparable<T>>
 
 	private String traversierePostOrder(final Knoten<T> einKnoten)
 	{
-		if(einKnoten != null)
-		return traversierePostOrder(einKnoten.getKnotenLinks()) + traversierePostOrder(einKnoten.getKnotenRechts()) + einKnoten.toString();
-		return "";
+		return (einKnoten != null) ? traversierePostOrder(einKnoten.getKnotenLinks()) + traversierePostOrder(einKnoten.getKnotenRechts()) + einKnoten.toString() : "";
 	}
 
 

@@ -12,7 +12,12 @@ public class Rekursion
 	public static void revIter(int n) 
 	{
 		assert(n >= 0);
-		// Aufgabe 1c)
+		
+		System.out.print(n % 10);
+		while(n > 9){
+			n = n / 10;
+			System.out.print(n % 10);
+		}
 		
 	}
 
