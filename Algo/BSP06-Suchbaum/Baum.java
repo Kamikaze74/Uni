@@ -2,11 +2,11 @@ public class Baum<T extends Comparable<T>>
 {
 	private Knoten<T> wurzel;
 
-	// Wird nur für grafische Oberfläche benötigt, ohne
-	// diese Methode könnte die gesamte Implementierung
-	// des Baumes geheim gehalten werden. Alle öffentlichen
+	// Wird nur fï¿½r grafische Oberflï¿½che benï¿½tigt, ohne
+	// diese Methode kï¿½nnte die gesamte Implementierung
+	// des Baumes geheim gehalten werden. Alle ï¿½ffentlichen
 	// Methoden sind parameterlos oder besitzen als
-	// einzigen Parameter einen Schlüsselwert
+	// einzigen Parameter einen Schlï¿½sselwert
 	public Knoten<T> getWurzel()
 	{
 		return wurzel;
@@ -28,7 +28,7 @@ public class Baum<T extends Comparable<T>>
 	public boolean suchen(final T daten)
 	{
 		return istLeer() ? false : suchenKnoten(daten, wurzel);
-		// Effiziente Kurzform für:
+		// Effiziente Kurzform fï¿½r:
 		// if (istLeer()) { return false; } else { return suchenKnoten(daten, wurzel); }
 	}
 
@@ -38,19 +38,19 @@ public class Baum<T extends Comparable<T>>
 			return false;
 
 		// Vergleichs-Ergebnis zwischenspeichern, da compareTo()
-		// aufwändig sein kann, und das Ergebnis mehrfach benötigt
+		// aufwï¿½ndig sein kann, und das Ergebnis mehrfach benï¿½tigt
 		// wird
 		final int cmp = daten.compareTo(teilbaum.getDaten());
 
 		return (cmp == 0) ? true : suchenKnoten(daten, (cmp < 0) ? teilbaum.getKnotenLinks() : teilbaum.getKnotenRechts());
-		// Effiziente Kurzform für:
+		// Effiziente Kurzform fï¿½r:
 		// if (cmp == 0) { return true; }
 		//   else if (cmp < 0) { return suchenKnoten(daten, teilbaum.getKnotenLinks()); }
 		//     else { return suchenKnoten(daten, teilbaum.getKnotenRechts()); }
 	}
 
 
-// Methoden zum Einfügen
+// Methoden zum Einfï¿½gen
 
 	public void einfuegen(final T daten)
 	{
@@ -65,13 +65,13 @@ public class Baum<T extends Comparable<T>>
 		}
 	}
 
-	// Generiert einen neuen Knoten mit übergebenen Daten und fügt
+	// Generiert einen neuen Knoten mit ï¿½bergebenen Daten und fï¿½gt
 	// ihn (die Suchbaumeigenschaft erhaltend) als Blatt in den
 	// Baum ein, sofern die Daten noch nicht vorhanden sind.
 	private void einfuegenKnoten(final T daten, Knoten<T> teilbaum)
 	{
 		// Vergleichs-Ergebnis zwischenspeichern, da compareTo()
-		// aufwändig sein kann, und das Ergebnis mehrfach benötigt
+		// aufwï¿½ndig sein kann, und das Ergebnis mehrfach benï¿½tigt
 		// wird
 		final int cmp = daten.compareTo(teilbaum.getDaten());
 
@@ -82,8 +82,8 @@ public class Baum<T extends Comparable<T>>
 
 		if (cmp < 0)
 		{
-			// Einzufügende Daten sind KLEINER als Daten im aktuellen Knoten
-			// und müssen daher im LINKEN Teilbaum eingefügt werden
+			// Einzufï¿½gende Daten sind KLEINER als Daten im aktuellen Knoten
+			// und mï¿½ssen daher im LINKEN Teilbaum eingefï¿½gt werden
 			if (teilbaum.getKnotenLinks() == null)
 			{
 				// Es gibt keinen linken Teilbaum -> neuen Knoten erzeugen
@@ -97,8 +97,8 @@ public class Baum<T extends Comparable<T>>
 		}
 		else
 		{
-			// Einzufügende Daten sind GROESSER als Daten im aktuellen Knoten
-			// und müssen daher im RECHTEN Teilbaum eingefügt werden
+			// Einzufï¿½gende Daten sind GROESSER als Daten im aktuellen Knoten
+			// und mï¿½ssen daher im RECHTEN Teilbaum eingefï¿½gt werden
 			if (teilbaum.getKnotenRechts() == null)
 			{
 				// Es gibt keinen rechten Teilbaum -> neuen Knoten erzeugen
@@ -123,7 +123,7 @@ public class Baum<T extends Comparable<T>>
 			return;
 
 		// Vergleichs-Ergebnis zwischenspeichern, da compareTo()
-		// aufwändig sein kann, und das Ergebnis mehrfach benötigt
+		// aufwï¿½ndig sein kann, und das Ergebnis mehrfach benï¿½tigt
 		// wird
 		final int cmp = daten.compareTo(wurzel.getDaten());
 
@@ -136,14 +136,14 @@ public class Baum<T extends Comparable<T>>
 		else
 			if (cmp < 0)
 			{
-				// Zu löschende Daten kleiner als Daten in Wurzel;
+				// Zu lï¿½schende Daten kleiner als Daten in Wurzel;
 				// im linken Teilbaum weitersuchen falls existent
 				if (wurzel.getKnotenLinks() != null)
 					entfernenKnoten(daten, wurzel, wurzel.getKnotenLinks(), true);
 			}
 			else
 			{
-				// Zu löschende Daten größer als Daten in Wurzel;
+				// Zu lï¿½schende Daten grï¿½ï¿½er als Daten in Wurzel;
 				// im rechten Teilbaum weitersuchen falls existent
 				if (wurzel.getKnotenRechts() != null)
 					entfernenKnoten(daten, wurzel, wurzel.getKnotenRechts(), false);
@@ -154,44 +154,44 @@ public class Baum<T extends Comparable<T>>
 	{
 		if (wurzel.getKnotenLinks() == null)
 		{
-			// Wurzel hat höchstens einen rechten Nachfolger.
+			// Wurzel hat hï¿½chstens einen rechten Nachfolger.
 			// Der wird zur neuen Wurzel!
 			wurzel = wurzel.getKnotenRechts();
 		}
 		else
 			if (wurzel.getKnotenRechts() == null)
 			{
-				// Wurzel hat höchstens einen linken Nachfolger.
+				// Wurzel hat hï¿½chstens einen linken Nachfolger.
 				// Der wird zur neuen Wurzel!
 				wurzel = wurzel.getKnotenLinks();
 			}
 			else
 			{
 				// Rechter und linker Teilbaum nicht leer; zwei Nachfolger.
-				// Wurzel durch größten Knoten im linken Teilbaum ersetzen!
+				// Wurzel durch grï¿½ï¿½ten Knoten im linken Teilbaum ersetzen!
 				ersetzeKnoten(wurzel);
 			}
 	}
 
-	// Sofern übergebene Daten im Teilbaum vorhanden sind, werden sie gelöscht.
-	// Elternknoten wird benötigt, da dessen rechter bzw. linker Nachfolger ggf. auf
-	// den rechten bzw. linken Nachfolger des zu löschenden Knotens umgesetzt werden muss
-	// Ist linkerTeilbaum == true, wurde der linke Nachfolger des Elternknotens übergeben,
-	// sonst der rechte. Wird benötigt, um zu entscheiden, ob der linke oder rechte
-	// Nachfolger des Elternknotens geändert werden muss.
+	// Sofern ï¿½bergebene Daten im Teilbaum vorhanden sind, werden sie gelï¿½scht.
+	// Elternknoten wird benï¿½tigt, da dessen rechter bzw. linker Nachfolger ggf. auf
+	// den rechten bzw. linken Nachfolger des zu lï¿½schenden Knotens umgesetzt werden muss
+	// Ist linkerTeilbaum == true, wurde der linke Nachfolger des Elternknotens ï¿½bergeben,
+	// sonst der rechte. Wird benï¿½tigt, um zu entscheiden, ob der linke oder rechte
+	// Nachfolger des Elternknotens geï¿½ndert werden muss.
 	private void entfernenKnoten(final T daten, Knoten<T> elternknoten, Knoten<T> teilbaum, final boolean linkerTeilbaum)
 	{
 		// Vergleichs-Ergebnis zwischenspeichern, da compareTo()
-		// aufwändig sein kann, und das Ergebnis mehrfach benötigt
+		// aufwï¿½ndig sein kann, und das Ergebnis mehrfach benï¿½tigt
 		// wird
 		final int cmp = daten.compareTo(teilbaum.getDaten());
 
 		if (cmp == 0)
 		{
-			// Der Knoten mit den zu löschenden Daten wurde gefunden
+			// Der Knoten mit den zu lï¿½schenden Daten wurde gefunden
 			if (teilbaum.getKnotenLinks() == null)
 			{
-				// Zu löschender Knoten hat höchstens einen rechten Nachfolger.
+				// Zu lï¿½schender Knoten hat hï¿½chstens einen rechten Nachfolger.
 				// Auf diesen vom Elternknoten aus verweisen!
 				if (linkerTeilbaum)
 				{
@@ -205,7 +205,7 @@ public class Baum<T extends Comparable<T>>
 			else
 				if (teilbaum.getKnotenRechts() == null)
 				{
-					// Zu löschender Knoten hat höchstens einen linken Nachfolger.
+					// Zu lï¿½schender Knoten hat hï¿½chstens einen linken Nachfolger.
 					// Auf diesen vom Elternknoten aus verweisen!
 					if (linkerTeilbaum)
 					{
@@ -219,36 +219,36 @@ public class Baum<T extends Comparable<T>>
 				else
 				{
 					// Rechter und linker Teilbaum nicht leer; zwei Nachfolger!
-					// Zu löschenden Knoten durch größten Knoten im linken Teilbaum ersetzten
+					// Zu lï¿½schenden Knoten durch grï¿½ï¿½ten Knoten im linken Teilbaum ersetzten
 					ersetzeKnoten(teilbaum);
 				}
 		}
 		else
 			if (cmp < 0)
 			{
-				// Zu löschende Daten kleiner als Daten im aktuellen Knoten;
+				// Zu lï¿½schende Daten kleiner als Daten im aktuellen Knoten;
 				// im linken Teilbaum weitersuchen falls existent
 				if (teilbaum.getKnotenLinks() != null)
 					entfernenKnoten(daten, teilbaum, teilbaum.getKnotenLinks(), true);
 			}
 			else
 			{
-				// Zu löschende Daten größer als Daten im aktuellen Knoten;
+				// Zu lï¿½schende Daten grï¿½ï¿½er als Daten im aktuellen Knoten;
 				// im rechten Teilbaum weitersuchen falls existent
 				if (teilbaum.getKnotenRechts() != null)
 					entfernenKnoten(daten, teilbaum, teilbaum.getKnotenRechts(), false);
 			}
 	}
 
-	// Ersetzt zu löschenden Knoten durch größten Knoten im linken Teilbaum,
-	// indem Daten des größten Knotens in zu löschenden Knoten kopiert werden.
-	// Vom Elternknoten des größten Knotens aus muss auf den linken Teilbaum
-	// des größten Knotens verwiesen werden. Der rechten Teilbaum des größten
-	// Knotens ist immer leer (Def. größter Knoten)
+	// Ersetzt zu lï¿½schenden Knoten durch grï¿½ï¿½ten Knoten im linken Teilbaum,
+	// indem Daten des grï¿½ï¿½ten Knotens in zu lï¿½schenden Knoten kopiert werden.
+	// Vom Elternknoten des grï¿½ï¿½ten Knotens aus muss auf den linken Teilbaum
+	// des grï¿½ï¿½ten Knotens verwiesen werden. Der rechten Teilbaum des grï¿½ï¿½ten
+	// Knotens ist immer leer (Def. grï¿½ï¿½ter Knoten)
 	private void ersetzeKnoten(Knoten<T> zuLoeschenderKnoten)
 	{
-		// Größten Knoten suchen; dessen rechter Nachfolger ist null.
-		// Daher kann rechter Nachfolger des zu löschenden Knotens übernommen werden.
+		// Grï¿½ï¿½ten Knoten suchen; dessen rechter Nachfolger ist null.
+		// Daher kann rechter Nachfolger des zu lï¿½schenden Knotens ï¿½bernommen werden.
 		Knoten<T> elternknoten = zuLoeschenderKnoten;
 		Knoten<T> teilbaum = zuLoeschenderKnoten.getKnotenLinks();
 		Knoten<T> groessterKnoten = teilbaum;
@@ -260,23 +260,23 @@ public class Baum<T extends Comparable<T>>
 			groessterKnoten = teilbaum;
 		}
 
-		// Daten des größten Knotens werden in zu löschenden Knoten kopiert
+		// Daten des grï¿½ï¿½ten Knotens werden in zu lï¿½schenden Knoten kopiert
 		zuLoeschenderKnoten.setDaten(groessterKnoten.getDaten());
 
-		if (elternknoten == zuLoeschenderKnoten) // Größter Knoten ist Wurzel des linken Teilbaums des zu Löschenden
+		if (elternknoten == zuLoeschenderKnoten) // Grï¿½ï¿½ter Knoten ist Wurzel des linken Teilbaums des zu Lï¿½schenden
 		{
-			// Zu löschender Knoten ist gleichzeitig Elternknoten des größten Knotens
-			// Rechter Teilbaum des zu löschenden Knotens muss erhalten bleiben
-			// Linken Teilbaum des zu loeschenden Knotens auf linken Teilbaum des größten Knotens setzen
-			// Das sind die einzigen Nachfolger des größten Knotens, da dessen rechter Teilbaum ja
+			// Zu lï¿½schender Knoten ist gleichzeitig Elternknoten des grï¿½ï¿½ten Knotens
+			// Rechter Teilbaum des zu lï¿½schenden Knotens muss erhalten bleiben
+			// Linken Teilbaum des zu loeschenden Knotens auf linken Teilbaum des grï¿½ï¿½ten Knotens setzen
+			// Das sind die einzigen Nachfolger des grï¿½ï¿½ten Knotens, da dessen rechter Teilbaum ja
 			// immer leer ist.
 			zuLoeschenderKnoten.setKnotenLinks(groessterKnoten.getKnotenLinks());
 		}
 		else
 		{
-			// Rechten, freiwerdenden Teilbaum des Elternknotens des größten Knotens
-			// auf linken Teilbaum des größten Knotens setzen
-			// Das sind die einzigen Nachfolger des größten Knotens, da dessen rechter Teilbaum ja
+			// Rechten, freiwerdenden Teilbaum des Elternknotens des grï¿½ï¿½ten Knotens
+			// auf linken Teilbaum des grï¿½ï¿½ten Knotens setzen
+			// Das sind die einzigen Nachfolger des grï¿½ï¿½ten Knotens, da dessen rechter Teilbaum ja
 			// immer leer ist.
 			elternknoten.setKnotenRechts(groessterKnoten.getKnotenLinks());
 		}
@@ -293,12 +293,9 @@ public class Baum<T extends Comparable<T>>
 
 	private String traversierePreOrder(final Knoten<T> einKnoten)
 	{
-		assert(einKnoten != null);
-
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
-
-		return "NOCH NICHT IMPLEMENTIERT";
+		if(einKnoten != null)
+		return einKnoten.toString() + traversierePreOrder(einKnoten.getKnotenLinks()) + traversierePreOrder(einKnoten.getKnotenRechts());
+		return "";
 	}
 
 
@@ -310,12 +307,9 @@ public class Baum<T extends Comparable<T>>
 
 	private String traversiereInOrder(final Knoten<T> einKnoten)
 	{
-		assert(einKnoten != null);
-
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
-
-		return "NOCH NICHT IMPLEMENTIERT";
+		if(einKnoten != null)
+		return traversiereInOrder(einKnoten.getKnotenRechts()) + einKnoten.toString() + traversiereInOrder(einKnoten.getKnotenLinks());
+		return "";
 	}
 
 
@@ -327,16 +321,13 @@ public class Baum<T extends Comparable<T>>
 
 	private String traversierePostOrder(final Knoten<T> einKnoten)
 	{
-		assert(einKnoten != null);
-
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
-
-		return "NOCH NICHT IMPLEMENTIERT";
+		if(einKnoten != null)
+		return traversierePostOrder(einKnoten.getKnotenLinks()) + traversierePostOrder(einKnoten.getKnotenRechts()) + einKnoten.toString();
+		return "";
 	}
 
 
-// Methoden zur Bestimmung der Höhe
+// Methoden zur Bestimmung der Hï¿½he
 
 	public int hoehe()
 	{
@@ -345,10 +336,21 @@ public class Baum<T extends Comparable<T>>
 
 	private int hoeheRek(final Knoten<T> einKnoten)
 	{
+		int count = 0;
 		
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
-
-		return -1;
+			if(einKnoten != null){
+				if(einKnoten.getKnotenLinks() != null && einKnoten.getKnotenRechts() != null){
+				int comp = 1;
+				
+					if(einKnoten.getKnotenLinks() != null)
+					comp += hoeheRek(einKnoten.getKnotenLinks()) + 1;
+					if(einKnoten.getKnotenRechts() != null)
+					comp += hoeheRek(einKnoten.getKnotenRechts()) + 1;
+				
+				if(count < comp)
+					count = comp;
+				}
+			}
+		return count;
 	}
 }

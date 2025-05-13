@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Rekursion",
+      "request": "launch",
+      "mainClass": "Rekursion",
+      "projectName": "Uni_11b8d522"
+    },
+    {
+      "type": "java",
+      "name": "ListeTest",
+      "request": "launch",
+      "mainClass": "ListeTest",
+      "projectName": "Uni_11b8d522"
+    },
+    {
+      "type": "java",
+      "name": "BaumTest",
+      "request": "launch",
+      "mainClass": "BaumTest",
+      "projectName": "Uni_11b8d522"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "Main",
