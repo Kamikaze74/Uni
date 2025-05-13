@@ -6,7 +6,7 @@ public class Baum<T extends Comparable<T>>
 	// diese Methode k�nnte die gesamte Implementierung
 	// des Baumes geheim gehalten werden. Alle �ffentlichen
 	// Methoden sind parameterlos oder besitzen als
-	// einzigen Parameter einen Schl�sselwert
+	// einzigen Parameter einen Schlüsselwert
 	public Knoten<T> getWurzel()
 	{
 		return wurzel;
