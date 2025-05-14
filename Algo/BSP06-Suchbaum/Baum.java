@@ -308,7 +308,7 @@ public class Baum<T extends Comparable<T>>
 	private String traversiereInOrder(final Knoten<T> einKnoten)
 	{
 		if(einKnoten != null)
-		return traversiereInOrder(einKnoten.getKnotenRechts()) + einKnoten.toString() + traversiereInOrder(einKnoten.getKnotenLinks());
+		return traversiereInOrder(einKnoten.getKnotenLinks()) + einKnoten.toString() + traversiereInOrder(einKnoten.getKnotenRechts());
 		return "";
 	}
 
@@ -334,21 +334,14 @@ public class Baum<T extends Comparable<T>>
 
 	private int hoeheRek(final Knoten<T> einKnoten)
 	{
-		int count = 0;
+		if(einKnoten == null)
+			return 0;
+
+			int ltb = hoeheRek(einKnoten.getKnotenLinks());
+			int rtb = hoeheRek(einKnoten.getKnotenRechts());
+
+			return (ltb > rtb)? 1 + ltb : 1 + rtb;
 		
-			if(einKnoten != null){
-				if(einKnoten.getKnotenLinks() != null && einKnoten.getKnotenRechts() != null){
-				int comp = 1;
-				
-					if(einKnoten.getKnotenLinks() != null)
-					comp += hoeheRek(einKnoten.getKnotenLinks()) + 1;
-					if(einKnoten.getKnotenRechts() != null)
-					comp += hoeheRek(einKnoten.getKnotenRechts()) + 1;
-				
-				if(count < comp)
-					count = comp;
-				}
-			}
-		return count;
-	}
+		}
+		
 }
