@@ -21,7 +21,7 @@ private Risikoverwaltung menuPrint(){
                                                                     "4. Berechne Summe aller R¨uckstellungen\n" +
                                                                     "5. Beenden\n"));
 
-    }while( auswahl < 1 || auswahl > 4); 
+    }while( auswahl < 1 || auswahl > 5); 
         switch (auswahl) {
             case 1:
                 Risiko rs = add();
