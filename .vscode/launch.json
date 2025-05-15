@@ -6,6 +6,13 @@
       "name": "Utility",
       "request": "launch",
       "mainClass": "Utility",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "Utility",
+      "request": "launch",
+      "mainClass": "Utility",
       "projectName": "Uni_11b8d522"
     },
     {
