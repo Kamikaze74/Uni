@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
 
 public class Utility {
 
@@ -15,9 +16,13 @@ public static void main(String[] args) throws IOException{
 
     sayHello(System.out);
     File f = new File("C:/Users/mikai/Documents/hier.txt");
+    File f1 = new File("C:/Users/mikai/Documents/da.txt");
+
     try {
         OutputStream otp = new FileOutputStream(f);
         sayHello(otp);
+        copy(f, f1);
+        cat(f1);
     } catch (FileNotFoundException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -33,20 +38,42 @@ public static void main(String[] args) throws IOException{
  sw.flush();
     }
 
+static void cat(File quelle){
+
+        try( RandomAccessFile raf = new RandomAccessFile(quelle, "r")) {
+            
+            int b = 0;
+            {
+            while ((b = raf.read()) != -1) 
+               System.out.print((char) b);
+               
+
+    } 
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+     
+}
+
 public static void copy(File from, File to) {
     try (
-        InputStream in = new FileInputStream(from);
-        BufferedInputStream bis = new BufferedInputStream(in);
-        OutputStream out = new FileOutputStream(to);
-        BufferedOutputStream bos = new BufferedOutputStream(out);) {
+        RandomAccessFile in = new RandomAccessFile(from, "r");
+        RandomAccessFile out = new RandomAccessFile(to, "rw")
+    ) {
+   
     int c;
     while ((c = in.read()) != -1) 
         out.write(c);
-
+    
     } catch (FileNotFoundException e) {
-// TODO Ausnahmebehandlung
+        e.printStackTrace();    System.out.print("File not found");// TODO Ausnahmebehandlung
     } catch (IOException e) {
-// TODO Ausnahmebehandlung
+        e.printStackTrace();    System.out.print("IOException");// TODO Ausnahmebehandlung
     }
 }
 }

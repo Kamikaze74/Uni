@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Utility",
+      "request": "launch",
+      "mainClass": "Utility",
+      "projectName": "Uni_11b8d522"
+    },
+    {
+      "type": "java",
       "name": "Rekursion",
       "request": "launch",
       "mainClass": "Rekursion",

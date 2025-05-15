@@ -14,14 +14,14 @@ private Risikoverwaltung menuPrint(){
 
     while (auswahl != 5) {
     do{
-
+            //da fehlt eine exception
         auswahl= Integer.parseInt(JOptionPane.showInputDialog(null, "1. Risiko aufnehmen\n" +
                                                                     "2. Zeige alle Risiken\n" +
                                                                     "3. Zeige Risiko mit maximaler R¨uckstellung\n" +
                                                                     "4. Berechne Summe aller R¨uckstellungen\n" +
                                                                     "5. Beenden\n"));
 
-    }while( auswahl < 1 || auswahl > 4);
+    }while( auswahl < 1 || auswahl > 4); 
         switch (auswahl) {
             case 1:
                 Risiko rs = add();
