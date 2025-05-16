@@ -65,7 +65,7 @@ int main(int argc, char** argv)
   //  printf("I-Node: %lu, ", buf.st_ino); /* I-Node als Dezimalzahl ausgeben */
 
     perm = buf.st_mode & 0777;   /* Nur die unteren 12 Bits ausgeben */
-    if (perm & S_IRUSR) 
+    if (perm & S_IRUSR)
         printf("r");
       else
         printf("-");
@@ -112,6 +112,6 @@ int main(int argc, char** argv)
     //printf(" %d \n", buf.st_uid);
   //  printf("Zugriffsrechte: 0%o\n", perm); /* Rechte als Oktalzahl ausgeben */
 
-  } 
+  }
   return 0;
 }
