@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Formatter;
 import java.util.Objects;
 
@@ -18,11 +21,20 @@ public class InakzeptablesRisiko extends Risiko {
 
         return berechneRisikowert();
     }
-    @Override
-    public String druckeDaten() {
+    public String druckeDatenMitString() {
         Formatter formatter = new Formatter();
         formatter.format("Id %d %s \"%s\" aus %d/%d;\n Risikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.ermittleRueckstellung(), massname);
         return formatter.toString();
+    }
+    public void druckeDaten(OutputStream stream) {
+        
+        try(OutputStreamWriter osw = new OutputStreamWriter(stream)){
+            Formatter formatter = new Formatter();
+            formatter.format("Id %d %s \"%s\" aus %d/%d;\n Risikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.ermittleRueckstellung(), massname);
+            osw.write(formatter.toString());
+
+        } catch (IOException e){e.printStackTrace(); System.out.print("IOException");}
+
     }
     @Override
     public boolean equals(Object o) {

@@ -66,11 +66,17 @@ public static void sayHelloOhneTryWithResources(OutputStream s) {
         OutputStreamWriter osw = new OutputStreamWriter(s);
         try {
             osw.write("Hello World");
-            osw.flush(); // wichtig!
+            osw.flush(); // was macht flush nochmal? leered den stream aber schließt ihn nicht
         } catch (IOException e) {
             e.printStackTrace();
             System.out.print("IOException");
-        }
+        }//finally {                             // wenn auf System.out angewendet schließt es System.out (keine Systemausgaben mehr möglich)
+         //  try {
+         //       if (osw != null) osw.close();  // flush() erst und dann schließt er den stream
+         //   } catch (IOException e) {
+         //       e.printStackTrace();
+         //   }
+         //}
     }
     
 static void cat(File quelle) {
