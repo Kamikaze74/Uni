@@ -6,6 +6,13 @@
       "name": "CopyBenchmark",
       "request": "launch",
       "mainClass": "CopyBenchmark",
+      "projectName": "Uni_11b8d522"
+    },
+    {
+      "type": "java",
+      "name": "CopyBenchmark",
+      "request": "launch",
+      "mainClass": "CopyBenchmark",
       "projectName": "Uni_5b360094"
     },
     {

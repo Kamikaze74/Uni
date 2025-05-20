@@ -7,12 +7,13 @@ public class CopyBenchmark {
         //File dest1 = new File("copy1.jpg");
         File dest2 = new File("copy2.jpg");
         File dest3 = new File("copy3.jpg");
-        File dest4 = new File("copy4.jpg");
+        //File dest4 = new File("copy3.jpg");
+        File dest5 = new File("copy4.jpg");
 
         long start, end;
 
         start = System.nanoTime();
-        //copyUnbufferedBytewise(source, dest1);
+     //   copyUnbufferedBytewise(source, dest1);
         end = System.nanoTime();
         System.out.printf("Ungepuffert, byteweise: %.2f ms%n", (end - start) / 1_000_000.0);
 
@@ -27,7 +28,12 @@ public class CopyBenchmark {
         System.out.printf("BufferedInputStream mit byte[]: %.2f ms%n", (end - start) / 1_000_000.0);
 
         start = System.nanoTime();
-        copyMitRandomAccessFile(source, dest4);
+     //   copyMitRandomAccessFileOhneBuffer(source, dest4);
+        end = System.nanoTime();
+        System.out.printf("RandomAccessFile: %.2f ms%n", (end - start) / 1_000_000.0);
+
+        start = System.nanoTime();
+        copyMitRandomAccessFile(source, dest5);
         end = System.nanoTime();
         System.out.printf("RandomAccessFile mit byte[]: %.2f ms%n", (end - start) / 1_000_000.0);
     }
@@ -65,6 +71,19 @@ public class CopyBenchmark {
             int bytesRead;
             while ((bytesRead = bis.read(buffer)) != -1) {
                 bos.write(buffer, 0, bytesRead);
+            }
+        }
+    }
+
+    static void copyMitRandomAccessFileOhneBuffer(File from, File to) throws IOException {
+        try (
+            RandomAccessFile in = new RandomAccessFile(from, "r");
+            RandomAccessFile out = new RandomAccessFile(to, "rw")
+        ) {
+            
+            int bytesRead;
+            while ((bytesRead = in.read()) != -1) {
+                out.write(bytesRead);
             }
         }
     }

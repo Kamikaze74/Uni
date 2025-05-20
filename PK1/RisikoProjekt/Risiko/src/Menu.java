@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IO;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -40,8 +39,7 @@ private Risikoverwaltung menuPrint(){
                 verwaltung.aufnehmen(rs);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 rs.druckeDaten(baos);
-                String output = baos.toString();
-                JOptionPane.showMessageDialog(null, output);
+                JOptionPane.showMessageDialog(null, baos.toString());
 
                 break;
 
