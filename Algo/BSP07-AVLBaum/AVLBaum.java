@@ -1,13 +1,17 @@
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Stack;
+
 public class AVLBaum<T extends Comparable<T>>
 {
 	private AVLKnoten<T> wurzel;
 	private boolean hoeheGeaendert;
 
-	// Wird nur für grafische Oberfläche benötigt, ohne
-	// diese Methode könnte die gesamte Implementierung
-	// des Baumes geheim gehalten werden. Alle öffentlichen
+	// Wird nur fï¿½r grafische Oberflï¿½che benï¿½tigt, ohne
+	// diese Methode kï¿½nnte die gesamte Implementierung
+	// des Baumes geheim gehalten werden. Alle ï¿½ffentlichen
 	// Methoden sind parameterlos oder besitzen als
-	// einzigen Parameter einen Schlüsselwert
+	// einzigen Parameter einen Schlï¿½sselwert
 	public AVLKnoten<T> getWurzel()
 	{
 		return wurzel;
@@ -23,25 +27,36 @@ public class AVLBaum<T extends Comparable<T>>
 
 	public boolean suchen(final T daten)
 	{
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
+		AVLKnoten <T> comp = getWurzel();
 
+		while (comp != null) {
+
+			int value = daten.compareTo(comp.getDaten());
+
+			if(value == 0){
+				return true;
+			}else if(value < 0){
+				comp = comp.getKnotenLinks();
+			}else{
+				comp = comp.getKnotenRechts();
+			}
+		}
 		return false;
 	}
 
 
-// Methoden zum Einfügen
+// Methoden zum Einfï¿½gen
 
 	public void einfuegen(final T daten)
 	{
 		// Setzen der Merker-Variable hoeheGeandert auf false
 		// Das wird zwar nach einem Links- oder Rechts-Ausgleich gemacht,
 		// aber diese finden nicht statt, wenn ein bereits existierender
-		// Schlüssel wiederholt eingefügt wird!
+		// Schlï¿½ssel wiederholt eingefï¿½gt wird!
 		hoeheGeaendert = false;
 
-		// Beim Einfügen wird der Baum neu zusammengesetzt, um Rotationen
-		// zu ermöglichen. Daher tritt hier kein Sonderfall auf, aber die
+		// Beim Einfï¿½gen wird der Baum neu zusammengesetzt, um Rotationen
+		// zu ermï¿½glichen. Daher tritt hier kein Sonderfall auf, aber die
 		// Wurzel muss neu zugewiesen werden.
 		wurzel = einfuegenKnoten(daten, wurzel);
 	}
@@ -56,14 +71,14 @@ public class AVLBaum<T extends Comparable<T>>
 		}
 
 		// Vergleichs-Ergebnis zwischenspeichern, da compareTo()
-		// aufwändig sein kann, und das Ergebnis mehrfach benötigt
+		// aufwï¿½ndig sein kann, und das Ergebnis mehrfach benï¿½tigt
 		// wird
 		final int cmp = daten.compareTo(teilbaum.getDaten());
 
 		if (cmp < 0)
 		{
-			// Einzufügende Daten sind KLEINER als Daten im aktuellen Knoten
-			// und müssen daher im LINKEN Teilbaum eingefügt werden
+			// Einzufï¿½gende Daten sind KLEINER als Daten im aktuellen Knoten
+			// und mï¿½ssen daher im LINKEN Teilbaum eingefï¿½gt werden
 			teilbaum.setKnotenLinks(einfuegenKnoten(daten, teilbaum.getKnotenLinks()));
 			if (hoeheGeaendert)
 				teilbaum = linksAusgleich(teilbaum);
@@ -71,8 +86,8 @@ public class AVLBaum<T extends Comparable<T>>
 		else
 			if (cmp > 0)
 			{
-				// Einzufügende Daten sind GROESSER als Daten im aktuellen Knoten
-				// und müssen daher im RECHTEN Teilbaum eingefügt werden
+				// Einzufï¿½gende Daten sind GROESSER als Daten im aktuellen Knoten
+				// und mï¿½ssen daher im RECHTEN Teilbaum eingefï¿½gt werden
 				teilbaum.setKnotenRechts(einfuegenKnoten(daten, teilbaum.getKnotenRechts()));
 				if (hoeheGeaendert)
 					teilbaum = rechtsAusgleich(teilbaum);
@@ -252,9 +267,21 @@ public class AVLBaum<T extends Comparable<T>>
 	// Pre-Order
 	public String traversierePreOrder()
 	{
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
+		Deque<AVLKnoten<T>> k = new LinkedList<>();
+		k.push(getWurzel());
+		String out = "";
 
-		return "NOCH NICHT IMPLEMENTIERT";
+		while(k.isEmpty() != true){
+
+			AVLKnoten<T> remove = k.pop();
+
+			if(remove.getKnotenRechts() != null)
+			k.push(remove.getKnotenRechts());
+			if(remove.getKnotenLinks() != null)
+			k.push(remove.getKnotenLinks());
+
+			out += remove.getDaten().toString();
+		}
+		return out;
 	}
 }
