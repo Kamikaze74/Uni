@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
@@ -17,4 +18,4 @@ else if (pid == 0) { /* Kindprozess */
 sleep(1); /* 1 sec schlafen */
 printf("Kindprozess mit PID %d\n", getpid());
 exit(100);
-}
+}}

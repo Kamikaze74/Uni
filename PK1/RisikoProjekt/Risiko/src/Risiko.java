@@ -1,6 +1,5 @@
+import java.io.OutputStream;
 import java.time.LocalDate;
-
-
 public abstract class Risiko {
     
     private static int count = 0;
@@ -47,5 +46,5 @@ public abstract class Risiko {
     }
     
     public abstract float ermittleRueckstellung();
-    public abstract String druckeDaten();
+    public abstract void druckeDaten(OutputStream stream);
 }

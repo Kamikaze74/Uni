@@ -1,5 +1,17 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IO;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import javax.swing.JOptionPane;
 public class Menu {
+
 private Risikoverwaltung verwaltung;
 
 public Menu(Risikoverwaltung verwaltung){
@@ -15,18 +27,22 @@ private Risikoverwaltung menuPrint(){
     while (auswahl != 5) {
     do{
             //da fehlt eine exception
-        auswahl= Integer.parseInt(JOptionPane.showInputDialog(null, "1. Risiko aufnehmen\n" +
-                                                                    "2. Zeige alle Risiken\n" +
-                                                                    "3. Zeige Risiko mit maximaler R¨uckstellung\n" +
-                                                                    "4. Berechne Summe aller R¨uckstellungen\n" +
-                                                                    "5. Beenden\n"));
+        auswahl= checkInput("1. Risiko aufnehmen\n" +
+                            "2. Zeige alle Risiken\n" +
+                            "3. Zeige Risiko mit maximaler R¨uckstellung\n" +
+                            "4. Berechne Summe aller R¨uckstellungen\n" +
+                            "5. Beenden\n", Integer.class);
 
-    }while( auswahl < 1 || auswahl > 4); 
+    }while( auswahl < 1 || auswahl > 5);
         switch (auswahl) {
             case 1:
                 Risiko rs = add();
                 verwaltung.aufnehmen(rs);
-                JOptionPane.showMessageDialog(null, rs.druckeDaten());
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                rs.druckeDaten(baos);
+                String output = baos.toString();
+                JOptionPane.showMessageDialog(null, output);
+
                 break;
 
             case 2:
@@ -45,7 +61,7 @@ private Risikoverwaltung menuPrint(){
     return verwaltung;
     }
 
-    private Risiko add(){
+private Risiko add(){
 
         String bh = checkInput("Bezeichnung", String.class);
         float ew = checkInput("Eintrittswahrscheinlichkeit", Float.class);
@@ -65,8 +81,8 @@ private Risikoverwaltung menuPrint(){
         return rs;
     }
 
-    @SuppressWarnings("unchecked")
-    private <T> T checkInput(String prompt, Class<T> type) { // <T> für eine belieblieges T // T rückgabewert
+@SuppressWarnings("unchecked")
+private <T> T checkInput(String prompt, Class<T> type) { // <T> für eine belieblieges T // T rückgabewert
         while (true) {
             try {
                 String input = JOptionPane.showInputDialog(null, prompt);
@@ -79,7 +95,9 @@ private Risikoverwaltung menuPrint(){
                 if (type == String.class) {
                     return (T) input;
                 } else if (type == Float.class) {
-                    return (T) Float.valueOf(Float.parseFloat(input));
+                    return (T) Float.valueOf(Float.parseFloat(input)); // die teilen sich ein catch block
+                } else if (type == Integer.class) {
+                    return (T) Integer.valueOf(Integer.parseInt(input)); // die teilen sich ein catch block
                 } else {
                     throw new IllegalArgumentException("Nicht unterstützter Typ: " + type);
                 }

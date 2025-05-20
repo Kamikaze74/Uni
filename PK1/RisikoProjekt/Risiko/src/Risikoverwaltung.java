@@ -1,3 +1,4 @@
+import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -16,7 +17,9 @@ public class Risikoverwaltung {
         String ausgabe = "";
 
         for (Risiko a: risikos){
-            ausgabe += (a).druckeDaten();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            a.druckeDaten(baos);
+            ausgabe += baos.toString();
         }
 
         return ausgabe;
@@ -24,12 +27,14 @@ public class Risikoverwaltung {
 
     public String sucheRisikoMitmaxRueckstellung() {
 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Risiko max = risikos.getFirst();
         for (Risiko a: risikos){
             if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
                 max = a;
         }
-        return max.druckeDaten();
+        max.druckeDaten(baos);
+        return baos.toString();
     }
 
     public float berechneSummeRueckstellungen() {
