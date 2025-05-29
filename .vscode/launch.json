@@ -52,10 +52,11 @@
     },
     {
       "type": "java",
-      "name": "Main",
+      "name": "Current File",
       "request": "launch",
-      "mainClass": "Main",
-      "projectName": "Uni_5b360094"
+      "mainClass": "SimpleJavaFXApp",
+      "vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib/ --add-modules javafx.controls",
+      "args": "",
     },
     {
       "type": "java",
