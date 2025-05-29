@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BBaumTest",
+      "request": "launch",
+      "mainClass": "BBaumTest",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
       "name": "CopyBenchmark",
       "request": "launch",
       "mainClass": "CopyBenchmark",

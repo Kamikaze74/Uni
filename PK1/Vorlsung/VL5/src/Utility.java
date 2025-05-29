@@ -5,10 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+<<<<<<< HEAD
+import java.io.PrintStream;
+import java.io.RandomAccessFile;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+=======
 import java.io.RandomAccessFile;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+>>>>>>> 273e5e8 (ka)
 
 
 public class Utility {
@@ -53,7 +60,11 @@ public class Utility {
         System.out.println("→ Ende");
     }
     
+<<<<<<< HEAD
+public static void sayHelloWithTryWithResources(OutputStream s) { // der den den outputstream gibt muss ihn schießen //kein try bock 
+=======
 public static void sayHelloWithTryWithResources(OutputStream s) {
+>>>>>>> 273e5e8 (ka)
         // hier vieleicht erst Deklarieren und im try block Initaliesieren?
     try(OutputStreamWriter osw = new OutputStreamWriter(s)) {
         osw.write("Hello World");
@@ -63,6 +74,10 @@ public static void sayHelloWithTryWithResources(OutputStream s) {
     }
 
 public static void sayHelloOhneTryWithResources(OutputStream s) {
+<<<<<<< HEAD
+        PrintStream osw = new PrintStream(s);
+        osw.print("Hello World");
+=======
         OutputStreamWriter osw = new OutputStreamWriter(s);
         try {
             osw.write("Hello World");
@@ -77,6 +92,7 @@ public static void sayHelloOhneTryWithResources(OutputStream s) {
          //       e.printStackTrace();
          //   }
          //}
+>>>>>>> 273e5e8 (ka)
     }
     
 static void cat(File quelle) {

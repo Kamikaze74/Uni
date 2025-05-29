@@ -4,12 +4,12 @@ import java.io.OutputStreamWriter;
 import java.util.Formatter;
 import java.util.Objects;
 
-public class InakzeptablesRisiko extends Risiko {
+public class InakzeptablesRisiko extends Risiko{
     
     private String massname;
 
-    public InakzeptablesRisiko(String p_bezeichnung, float p_eintrittswahrscheinlichkeit, float p_kosten_im_schadensfall, String p_massname) {
-        super(p_bezeichnung, p_eintrittswahrscheinlichkeit, p_kosten_im_schadensfall);
+    public InakzeptablesRisiko(String p_bezeichnung, float p_eintrittswahrscheinlichkeit, float p_kosten_im_schadensfall, String p_massname, int setId) {
+        super(p_bezeichnung, p_eintrittswahrscheinlichkeit, p_kosten_im_schadensfall,setId);
         this.massname = p_massname;
     }
 
@@ -22,14 +22,16 @@ public class InakzeptablesRisiko extends Risiko {
         return berechneRisikowert();
     }
     public String druckeDatenMitString() {
-        Formatter formatter = new Formatter();
-        formatter.format("Id %d %s \"%s\" aus %d/%d;\n Risikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.ermittleRueckstellung(), massname);
-        return formatter.toString();
+        try (Formatter formatter = new Formatter()) {
+            formatter.format("Id %d %s \"%s\" aus %d/%d;\n Risikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.ermittleRueckstellung(), massname);
+            return formatter.toString();
+        }
     }
     public void druckeDaten(OutputStream stream) {
         
-        try(OutputStreamWriter osw = new OutputStreamWriter(stream)){
-            Formatter formatter = new Formatter();
+        try(OutputStreamWriter osw = new OutputStreamWriter(stream)
+            ;Formatter formatter = new Formatter()){
+            
             formatter.format("Id %d %s \"%s\" aus %d/%d;\n Risikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.ermittleRueckstellung(), massname);
             osw.write(formatter.toString());
 

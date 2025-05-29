@@ -1,9 +1,19 @@
+<<<<<<< HEAD
+import java.io.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+public class Risikoverwaltung implements Serializable{
+
+    private static final long serialVersionUID = -729034045372955790L;
+=======
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 public class Risikoverwaltung {
 
+>>>>>>> 273e5e8 (ka)
     LinkedList<Risiko> risikos = new LinkedList<Risiko>();
 
     public void aufnehmen(Risiko r) {
@@ -25,6 +35,18 @@ public class Risikoverwaltung {
         return ausgabe;
     }
 
+<<<<<<< HEAD
+    public int fixId() {
+        
+        int ausgabe = 0;
+        for (@SuppressWarnings("unused") Risiko a: risikos)
+            ausgabe++;
+        
+        return ausgabe;
+    }
+
+=======
+>>>>>>> 273e5e8 (ka)
     public String sucheRisikoMitmaxRueckstellung() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -54,4 +76,37 @@ public class Risikoverwaltung {
             }
         });
     }
+<<<<<<< HEAD
+
+    public void serialsierung(){
+
+    File datei = new File("Objekte");
+
+    try (FileOutputStream fos = new FileOutputStream(datei);
+         ObjectOutputStream osw = new ObjectOutputStream(fos)) {
+
+         osw.writeObject(risikos);
+
+    } catch (IOException e) {
+         System.out.println("Fehler bei der Serialisierung");
+         e.printStackTrace();
+        }
+    }
+
+    public void deserialsierung(File file){
+
+    try ( FileInputStream fis = new FileInputStream(file);
+         ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            this.risikos = (LinkedList<Risiko>) ois.readObject();
+
+    } catch (IOException e) {
+         System.out.println("Fehler bei der Serialisierung");
+         e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Fehler: class-Datei nicht gefunden");
+        }
+    }
+=======
+>>>>>>> 273e5e8 (ka)
 }

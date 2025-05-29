@@ -1,16 +1,29 @@
 import java.io.OutputStream;
+<<<<<<< HEAD
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public abstract class Risiko implements Serializable{
+    
+=======
 import java.time.LocalDate;
 public abstract class Risiko {
     
     private static int count = 0;
+>>>>>>> 273e5e8 (ka)
     private int id;
     private String bezeichnung;
     private float eintrittswahrscheinlichkeit;
     private float kosten_im_schadenfall;
     private LocalDate erstellungsdatum;
 
+<<<<<<< HEAD
+    public Risiko(String bezeichnung, float eintrittswahrscheinlichkeit, float kosten_im_schadenfall, int setId) {
+        this.id = setId;
+=======
     public Risiko(String bezeichnung, float eintrittswahrscheinlichkeit, float kosten_im_schadenfall) {
         this.id = count++;
+>>>>>>> 273e5e8 (ka)
         this.bezeichnung = bezeichnung;
         this.eintrittswahrscheinlichkeit = eintrittswahrscheinlichkeit;
         this.kosten_im_schadenfall = kosten_im_schadenfall;
