@@ -38,5 +38,5 @@ void appendItem(Item *root, Item *newItem)
   while(root->next != NULL)
     root = root->next;
 
-    root->next = newItem;
+  root->next = newItem;
 }

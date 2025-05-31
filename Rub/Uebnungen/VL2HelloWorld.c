@@ -8,7 +8,7 @@ char text[] = "Hello World"; // Definition einer Zeichenkette
 printf("%s\n", text);
 printf("Das erste C-Programm heisst: %s\n", text);
 printf("%c%c\n", text[0], text[6]); // Ausgabe eines Zeichens
-printf("Die Länge von '%s' ist %d\n", text, strlen(text));
+printf("Die Länge von '%s' ist %lu\n", text, strlen(text));
 printf("Die Speicheradresse ist %p\n", text);
 
 return EXIT_SUCCESS;
