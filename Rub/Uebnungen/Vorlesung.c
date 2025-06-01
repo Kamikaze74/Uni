@@ -1,26 +1,45 @@
 #include <stdio.h>
-#include <sys/wait.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
+#include <sys/wait.h>
+
+int v[3] = {0, 0, 0};
+
+void handler(int sig) {
+    v[0]++;
+}
+
 int main() {
-    int v1 = 0, v2 = 0, v3 = 0, pid1, pid2, pid3;
-    pid1 = fork();
-    pid2 = getpid();
-    v2++;
-    pid3 = fork();
-    if (pid1 == pid3) {
-    v1++;
-    v2++;
-    } else if (pid2 == getppid()) {
-    v1++;
-    v3++;
-    sleep(1);
-    } else if (pid2 == getpid()) {
-    v2++;
-    wait(NULL);
-    if (pid1 > 0) {
-    v3++;
-    wait(NULL);
+    int pid[3];
+
+    signal(SIGUSR1, handler);
+
+    pid[0] = fork();
+    pid[1] = getpid();
+    pid[2] = fork();
+
+    if (pid[0] == pid[2]) {
+        // Dieser Block wird von Prozessen ausgeführt, bei denen pid[0] == pid[2]
+        v[1]++;
+        sleep(4);
+    } else if (pid[1] == getppid()) {
+        // Dieser Block wird von Prozessen ausgeführt, bei denen pid[1] == getppid()
+        sleep(3);
+        v[2]++;
+        sleep(2);
+    } else if (pid[1] == getpid()) {
+        // Dieser Block wird von Prozessen ausgeführt, bei denen pid[1] == getpid()
+        sleep(1);
+        v[2]++;
+        kill(pid[2], SIGUSR1);
+        wait(NULL);
+        if (pid[0] > 0) {
+            v[1]++;
+            wait(NULL);
+        }
     }
-    }
-    printf("%d %d %d\n", v1, v2, v3);
-    }
+
+    printf("%d %d %d\n", v[0], v[1], v[2]);
+    return 0;
+}
