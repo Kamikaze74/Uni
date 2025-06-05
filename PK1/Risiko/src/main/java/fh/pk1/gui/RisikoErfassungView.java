@@ -1,17 +1,12 @@
 package fh.pk1.gui;
 
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.stage.*;
+public abstract class RisikoErfassungView extends Stage {
+    private Risiko risiko;
 
-public abstract class RisikoErfassungView extends Stage{
-
-    public RisikoErfassungView(Stage stage, Risiko risiko){
-
-        Window primaryStage = stage;
-        this.initOwner(primaryStage);
-        this.initModality(Modality.WINDOW_MODAL);
+    public RisikoErfassungView(Risiko risiko, Stage owner) {
+        this.risiko = risiko;
     }
 
-    abstract void Showview();
+    public abstract void showView();
 }

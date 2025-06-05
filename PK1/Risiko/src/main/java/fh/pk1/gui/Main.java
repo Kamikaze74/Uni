@@ -5,11 +5,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
-	@Override
-	public void start(Stage stage) {
-		Risikoverwaltung verwaltung = new Risikoverwaltung(stage, new Risiko());
-		verwaltung.Showview();
+	public void start(Stage primaryStage){
+        
+		Risikoverwaltung verwatung = new Risikoverwaltung(null, primaryStage);
+		verwatung.showView();
 	}
+
 	public static void main(String[] args){
 		launch();
 	}

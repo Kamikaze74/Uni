@@ -1,37 +1,35 @@
 package fh.pk1.gui;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-class Risikoverwaltung extends RisikoErfassungView{
+public class Risikoverwaltung extends RisikoErfassungView{
 
-    ExtremesRisiko extrem;
-    InakzeptablesRisiko inakzeptable;
-    Risikoerfassung erfassung;
+    public Risikoverwaltung(Risiko risiko, Stage owner){
+        super(risiko, owner);
 
-    public Risikoverwaltung(Stage stage, Risiko risiko) {
-        super(stage, risiko);
+        this.initOwner(owner);
+        this.initModality(Modality.WINDOW_MODAL);
+        this.setTitle("Risikoerfassung");
 
-        ExtremesRisiko extrem = new ExtremesRisiko(stage, risiko);
-        InakzeptablesRisiko inakzeptable = new InakzeptablesRisiko(stage, risiko);
-        Risikoerfassung erfassung = new Risikoerfassung(stage, risiko);
+        // Vorbereitendes leeres Layout
+        VBox layout = new VBox();
+        Scene scene = new Scene(layout, 300, 200);
+        this.setScene(scene);
+
+        Risikoerfassung erfassung = new Risikoerfassung(risiko, owner);
+        ExtremesRisiko extrem = new ExtremesRisiko(risiko, owner);
+        InakzeptablesRisiko inakzeptable = new InakzeptablesRisiko(risiko, owner);
+
+        this.showView();
+        erfassung.showView();
+        extrem.showView();
+        inakzeptable.showView();
     }
 
-    
-    
-    @Override
-    void Showview() {
-        Label nachricht = new Label("Hallo Programmierkurs 1");
-        nachricht.setFont(new Font(50));
-        Scene szene = new Scene(nachricht);
-        setScene(szene);
-        show();
-
-        erfassung.Showview();
-        extrem.Showview();
-        inakzeptable.Showview();
+    public void showView(){
+        this.show();
     }
 }
-
