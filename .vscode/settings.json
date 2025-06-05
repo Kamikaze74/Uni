@@ -56,6 +56,7 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "java.debug.settings.vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib --add-modules javafx.controls",
   "java.project.referencedLibraries": [
     "lib/**/*.jar",
     "/home/mika/Documents/javafx-sdk-24.0.1/lib/javafx.base.jar",

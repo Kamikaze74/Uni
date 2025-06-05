@@ -4,12 +4,16 @@ public class BaumAnsicht
 {
 	private AVLBaum<Character> einBaum;
 
-	public BaumAnsicht(AVLBaum<Character> einBaum)
+	public BaumAnsicht(Baum<Character> einBaum2)
 	{
-		this.einBaum = einBaum;
+		this.einBaum = einBaum2;
 	}
 
-	public void ausgeben(int xLinks, int xRechts, int y, Graphics g)
+	public BaumAnsicht(Baum<Character> einBaum2) {
+        //TODO Auto-generated constructor stub
+    }
+
+    public void ausgeben(int xLinks, int xRechts, int y, Graphics g)
 	{
 		g.setColor(new Color(240, 240, 240));
 		g.fillRect(xLinks, 100, xRechts, 190);

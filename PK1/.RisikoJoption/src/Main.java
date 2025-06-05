@@ -1,3 +1,5 @@
+package PK1.RisikoJoption.src;
+
 public class Main {
     public static void main(String[] args) {
         // Beispielhafte Risikoobjekte erstellen

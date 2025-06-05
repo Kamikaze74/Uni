@@ -3,6 +3,65 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "fh.pk1.gui.Main",
+      "projectName": "sample"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "main.java.fh.pk1.gui.Main",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.example.Main",
+      "projectName": "risiko"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "PK1.Risiko.src.main.java.com.example.Main",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "PK1.Risiko.Main",
+      "vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib/ --add-modules javafx.controls",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "JavaFXTest",
+      "request": "launch",
+      "mainClass": "PK1.Vorlsung.JAVAFX.JavaFXTest",
+      "vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib/ --add-modules javafx.controls",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "JavaFXTest",
+      "request": "launch",
+      "mainClass": "PK1.Vorlsupackage.JavaFXTest",
+      "vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib/ --add-modules javafx.controls",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "BaumTest",
+      "request": "launch",
+      "mainClass": "BaumTest",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
       "name": "BBaumTest",
       "request": "launch",
       "mainClass": "BBaumTest",
@@ -63,14 +122,7 @@
       "request": "launch",
       "mainClass": "Main",
       "vmArgs": "--module-path /home/mika/Documents/javafx-sdk-24.0.1/lib/ --add-modules javafx.controls",
-      "args": "",
-    },
-    {
-      "type": "java",
-      "name": "Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "Uni_11b8d522"
+      "args": ""
     },
     {
       "name": "C/C++ Runner: Debug Session",
