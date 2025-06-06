@@ -1,4 +1,3 @@
-package PK1.RisikoJoption.src;
 import java.io.*;
 import java.util.Formatter;
 import java.util.Objects;

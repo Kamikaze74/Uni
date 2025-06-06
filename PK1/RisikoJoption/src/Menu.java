@@ -1,5 +1,3 @@
-package PK1.RisikoJoption.src;
-
 import java.io.*;
 import javax.swing.JOptionPane;
 

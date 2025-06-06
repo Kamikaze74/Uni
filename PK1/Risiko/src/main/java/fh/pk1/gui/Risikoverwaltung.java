@@ -22,12 +22,11 @@ public class Risikoverwaltung extends RisikoErfassungView {
 
         Button erfassungOeffnenButton = new Button("Risiko erfassen");
         
-        // Beim Klick auf den Button wird ein neues Fenster geöffnet
             erfassungOeffnenButton.setOnAction(e -> {
             Risikoerfassung erfassung = new Risikoerfassung(risiko, primaryStage);
-            erfassung.initModality(Modality.WINDOW_MODAL); // blockiert Hauptfenster
-            erfassung.initOwner(this); // Risikoverwaltung ist Besitzer
-            erfassung.showAndWait(); // blockiert bis Fenster geschlossen wird
+            erfassung.initModality(Modality.WINDOW_MODAL);
+            erfassung.initOwner(this);
+            erfassung.showAndWait();
         });
 
 
