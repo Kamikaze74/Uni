@@ -2,9 +2,9 @@ package fh.pk1.gui;
 
 import javafx.stage.*;
 public abstract class RisikoErfassungView extends Stage {
-    private Risiko risiko;
+    private RisikoView risiko;
 
-    public RisikoErfassungView(Risiko risiko, Stage owner) {
+    public RisikoErfassungView(RisikoView risiko, Stage owner) {
         this.risiko = risiko;
     }
 

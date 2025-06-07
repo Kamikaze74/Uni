@@ -7,7 +7,7 @@ public class Main extends Application{
 
 	public void start(Stage primaryStage){
         
-		Risikoverwaltung verwatung = new Risikoverwaltung(null, primaryStage);
+		RisikoverwaltungView verwatung = new RisikoverwaltungView(null, primaryStage);
 		verwatung.showView();
 	}
 

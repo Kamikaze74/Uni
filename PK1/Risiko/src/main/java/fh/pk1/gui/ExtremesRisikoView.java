@@ -1,15 +1,17 @@
 package fh.pk1.gui;
 
-import javafx.geometry.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Risikoerfassung extends RisikoErfassungView{
+public class ExtremesRisikoView extends RisikoErfassungView{
 
-    public Risikoerfassung(RisikoView risiko, Stage primaryStage) {
+
+    public ExtremesRisikoView(RisikoView risiko, Stage primaryStage) {
         super(risiko, primaryStage);
         this.initOwner(primaryStage);
 
@@ -18,27 +20,22 @@ public class Risikoerfassung extends RisikoErfassungView{
         root.setAlignment(Pos.TOP_CENTER);
 
 
-
-        Label beschriftung = new Label("Risikoerfassung");
+        Label beschriftung = new Label("Erfassung extremes Risiko");
         beschriftung.setFont(Font.font(16));
         
 
         GridPane inputGrid = new GridPane();
         inputGrid.setHgap(10);
         inputGrid.setVgap(10);
-        inputGrid.setAlignment(Pos.CENTER_LEFT);
+        inputGrid.setAlignment(Pos.BASELINE_LEFT);
 
         TextField tf1 = new TextField("Vorgabe");
         tf1.setPrefWidth(250);
-        TextField tf2 = new TextField("Vorgabe");
-        tf2.setPrefWidth(250);
-        TextField tf3 = new TextField("Vorgabe");
-        tf3.setPrefWidth(250);
 
-        
-        inputGrid.addRow(1, new Label("Bezeichnung:"), tf1);
-        inputGrid.addRow(2, new Label("Eintrittswahrscheinlichkeit:"), tf2);
-        inputGrid.addRow(3, new Label("Kosten im Schadensfall:"), tf3);
+        inputGrid.addRow(1, new Label("Bezeichnung: TODO"));
+        inputGrid.addRow(2, new Label("Maßnahme:"), tf1);
+        inputGrid.addRow(2, new Label("Versicherungsbeitrag:"), tf1);
+
 
 
         FlowPane buttonPane = new FlowPane();
@@ -53,11 +50,12 @@ public class Risikoerfassung extends RisikoErfassungView{
 
         root.getChildren().addAll(beschriftung, inputGrid, buttonPane);
 
-        Scene scene = new Scene(root, 500, 300);
+        Scene scene = new Scene(root, 400, 250);
         setScene(scene);
     }
 
     public void showView() {
-        show();
+        this.show();
     }
+
 }
