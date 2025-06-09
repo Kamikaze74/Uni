@@ -38,10 +38,9 @@ class BBaum<T extends Comparable<T>>
 	// Eigentliche Implementierung
 	private boolean suchen(final T daten, BKnoten<T> knoten)
 	{
-		if(knoten == null){
-			return false;
-		}
-		for(int i = 0; knoten.elemente.length > i && knoten.elemente[i] != null; i++){
+		if(knoten == null){	return false;	}
+
+		for(int i = 0; knoten.elemente.length > i; i++){
 			
 			int value = daten.compareTo(knoten.elemente[i]);
 			
@@ -51,6 +50,6 @@ class BBaum<T extends Comparable<T>>
 			if(value < 0 && knoten.kinder[i] != null)
 				return suchen(daten, knoten.kinder[i]);
 		}
-			return suchen(daten, knoten.kinder[knoten.kinder.length-1]);
+			return suchen(daten, knoten.kinder[knoten.elemente.length]);
 	}
 }

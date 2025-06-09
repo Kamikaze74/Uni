@@ -9,7 +9,7 @@ import javafx.beans.property.*;
 
 public abstract class RisikoBean{
     
-    private final IntegerProperty id = new SimpleIntegerProperty();     // Wieso final??? && Sind Properties Serializable??Nein
+    private final IntegerProperty id = new SimpleIntegerProperty();     // Wieso final???
     private final StringProperty bezeichnung = new SimpleStringProperty();
     private final FloatProperty eintrittswahrscheinlichkeit = new SimpleFloatProperty();
     private final FloatProperty kosten_im_schadenfall = new SimpleFloatProperty();

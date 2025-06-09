@@ -337,11 +337,10 @@ public class Baum<T extends Comparable<T>>
 		if(einKnoten == null)
 			return 0;
 
-			int ltb = hoeheRek(einKnoten.getKnotenLinks());
-			int rtb = hoeheRek(einKnoten.getKnotenRechts());
+		int ltb = hoeheRek(einKnoten.getKnotenLinks());
+		int rtb = hoeheRek(einKnoten.getKnotenRechts());
 
-			return (ltb > rtb)? 1 + ltb : 1 + rtb;
+		return (ltb > rtb)? 1 + ltb : 1 + rtb;
 		
-		}
-		
+	}
 }

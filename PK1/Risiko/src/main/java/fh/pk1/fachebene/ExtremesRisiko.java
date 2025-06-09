@@ -25,7 +25,7 @@ public class ExtremesRisiko extends InakzeptablesRisiko{
     }
     public String druckeDatenString() {
         try (Formatter formatter = new Formatter()) {
-            formatter.format("Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Versicherungsbeitrag %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.getVersicherungsbeitrag(), this.getMassname());
+            formatter.format("Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Versicherungsbeitrag %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.getVersicherungsbeitrag(), this.getMaßnahme());
             return formatter.toString();
         }
     }
@@ -34,7 +34,7 @@ public class ExtremesRisiko extends InakzeptablesRisiko{
         try(OutputStreamWriter osw = new OutputStreamWriter(stream);
             Formatter formatter = new Formatter()){
             
-            formatter.format("Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Versicherungsbeitrag %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.getVersicherungsbeitrag(), this.getMassname());
+            formatter.format("Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Versicherungsbeitrag %.2f;\nMaßnahme \"%s\"\n", this.getId(), this.getClass().getName(), this.getBezeichnung(), this.getErstellungsdatum().getMonthValue(), this.getErstellungsdatum().getYear(), this.berechneRisikowert(), this.getVersicherungsbeitrag(), this.getMaßnahme());
             osw.write(formatter.toString());
 
         } catch (IOException e){e.printStackTrace(); System.out.print("IOException");}
