@@ -1,3 +1,4 @@
+package UEB09_10;
 public class BasicSort
 {
 	// Selectionsort:
@@ -23,18 +24,20 @@ public class BasicSort
 	// Insertionsort:
 	// Sortiere das Teilfeld von array beginnend mit Index links bis einschlie�lich Index rechts
 	public static void insertionsort(int[] array, final int links, final int rechts)
-	{
-		for(int i = links + 2; i <= rechts; i++){
-			int x = array[i];
-			int j = i -1;
+{
+    for (int i = links + 1; i <= rechts; i++) {
+        int x = array[i];
+        int j = i - 1;
 
-			while( j >= 1 && array[j] > x){
-				array[j + 1] = array[j];
-				j--;
-			}
-		array[j+1] = x;
-		}
-	}
+        while (j >= links && array[j] > x) {
+            array[j + 1] = array[j];
+            j--;
+        }
+
+        array[j + 1] = x;
+    }
+}
+
 
 	// Bubblesort:
 	// Sortiere das Teilfeld von array beginnend mit Index links bis einschlie�lich Index rechts

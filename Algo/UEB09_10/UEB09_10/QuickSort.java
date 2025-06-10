@@ -1,3 +1,4 @@
+package UEB09_10;
 public class QuickSort
 {
 	public static void quicksort(int[] array, final int links, final int rechts)

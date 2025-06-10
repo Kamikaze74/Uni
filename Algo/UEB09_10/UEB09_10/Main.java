@@ -1,3 +1,5 @@
+package UEB09_10;
+
 import java.util.Arrays;
 
 public class Main
@@ -29,7 +31,7 @@ public class Main
 		"Arrays.sort"
 	};
 
-	// Gibt ein Array mit n Elementen und zufälligen Zahlen zurück
+	// Gibt ein Array mit n Elementen und zufï¿½lligen Zahlen zurï¿½ck
 	public static int[] getRandomArray(final int n)
 	{
 		int[] array = new int[n];
@@ -40,7 +42,7 @@ public class Main
 		return array;
 	}
 
-	// Prüft, ob ein Array korrekt sortiert ist
+	// Prï¿½ft, ob ein Array korrekt sortiert ist
 	public static boolean checkArray(int[] array)
 	{
 		for (int a = 0; a < array.length-1; a++)
@@ -50,7 +52,7 @@ public class Main
 		return true;
 	}
 
-	// Prüft einen Algorithmus, und gibt die Laufzeiten aus
+	// Prï¿½ft einen Algorithmus, und gibt die Laufzeiten aus
 	public static void checkSortAlgorithmus(final int algorithmus)
 	{
 		StopUhr stopUhr = new StopUhr();
@@ -60,7 +62,7 @@ public class Main
 		long maxTime = 0;
 		long sumTime = 0;
 
-		// Wir testen mit COUNT zufällig erzeugten Feldern
+		// Wir testen mit COUNT zufï¿½llig erzeugten Feldern
 		for (int a = 0; a < ANZAHLDURCHLAEUFE; a++)
 		{
 			int[] array = getRandomArray(N);
@@ -119,8 +121,8 @@ public class Main
 				minTime = stopUhr.getDuration();
 
 			// SK 07.06.2023: 
-			// Ersten Durchlauf nicht einbeziehen, da Ausreißer 
-			// Optimierung durch JIT-Compiler für weitere Durchläufe
+			// Ersten Durchlauf nicht einbeziehen, da Ausreiï¿½er 
+			// Optimierung durch JIT-Compiler fï¿½r weitere Durchlï¿½ufe
 			if (a > 0 && stopUhr.getDuration()>maxTime)
 				maxTime = stopUhr.getDuration();
 
@@ -141,7 +143,7 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		System.out.println("Arraygröße n = " + N + "   Durchläufe: " + ANZAHLDURCHLAEUFE + "\n");
+		System.out.println("Arraygrï¿½ï¿½e n = " + N + "   Durchlï¿½ufe: " + ANZAHLDURCHLAEUFE + "\n");
 		System.out.println("    Algorithmus                        Laufzeit (ms)");
 		System.out.println("                        minimal      durchschnittlich    maximal");
 

@@ -1,3 +1,4 @@
+package UEB09_10;
 
 public class MergeSort 
 {
@@ -15,7 +16,7 @@ public class MergeSort
 		{
 			// mindestens 2 Elemente
 			int mitte = (links + rechts)/2;
-			// Feld in der Mitte teilen und rekursive Aufrufe für Teilfelder
+			// Feld in der Mitte teilen und rekursive Aufrufe fï¿½r Teilfelder
 			mergesortTD(array, hilfsarray, links, mitte);
 			mergesortTD(array, hilfsarray, mitte+1, rechts);
 			// Sortierte Teilfelder mischen
@@ -46,9 +47,9 @@ public class MergeSort
 			else if (j>rechts)
 				hilfsarray[k] = array[i++]; // 2. Zeilfeld schon zu Ende
 			else if(array[i] < array[j])
-				hilfsarray[k] = array[i++]; // Element aus 1. Teilfeld übernehmen
+				hilfsarray[k] = array[i++]; // Element aus 1. Teilfeld ï¿½bernehmen
 			else
-				hilfsarray[k] = array[j++];	// Element aus 2. teilfeld übernehmen						
+				hilfsarray[k] = array[j++];	// Element aus 2. teilfeld ï¿½bernehmen						
 		}
 
 		

@@ -1,3 +1,4 @@
+package UEB09_10;
 public class HybridSort
 {
 	public static void hybridsort1(int[] array, final int links, final int rechts)
@@ -24,7 +25,7 @@ public class HybridSort
 			}
 		} while (li <= re);
 
-		// Divide and conquer: rekursive Aufrufe für neue Teilbereiche
+		// Divide and conquer: rekursive Aufrufe fï¿½r neue Teilbereiche
 		if (links+4 < re)
 			hybridsort1(array, links, re);
 		else
@@ -60,7 +61,7 @@ public class HybridSort
 			}
 		} while (li <= re);
 
-		// Divide and conquer: rekursive Aufrufe für neue Teilbereiche
+		// Divide and conquer: rekursive Aufrufe fï¿½r neue Teilbereiche
 		if (links+4 < re)
 			hybridsort2(array, links, re);
 		else

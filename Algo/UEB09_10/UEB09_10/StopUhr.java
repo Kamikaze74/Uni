@@ -1,3 +1,4 @@
+package UEB09_10;
 public class StopUhr
 {
 	private long startTime, stopTime;
