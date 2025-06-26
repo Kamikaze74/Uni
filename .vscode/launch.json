@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "CopyBenchmark",
+      "request": "launch",
+      "mainClass": "CopyBenchmark",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
       "name": "HashTableTest",
       "request": "launch",
       "mainClass": "HashTableTest",

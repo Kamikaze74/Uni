@@ -7,7 +7,7 @@ public class CopyBenchmark {
         //File dest1 = new File("copy1.jpg");
         File dest2 = new File("copy2.jpg");
         File dest3 = new File("copy3.jpg");
-        //File dest4 = new File("copy3.jpg");
+        File dest4 = new File("copy3.jpg");
         File dest5 = new File("copy4.jpg");
 
         long start, end;
@@ -28,7 +28,7 @@ public class CopyBenchmark {
         System.out.printf("BufferedInputStream mit byte[]: %.2f ms%n", (end - start) / 1_000_000.0);
 
         start = System.nanoTime();
-     //   copyMitRandomAccessFileOhneBuffer(source, dest4);
+        copyMitRandomAccessFileOhneBuffer(source, dest4);
         end = System.nanoTime();
         System.out.printf("RandomAccessFile: %.2f ms%n", (end - start) / 1_000_000.0);
 
