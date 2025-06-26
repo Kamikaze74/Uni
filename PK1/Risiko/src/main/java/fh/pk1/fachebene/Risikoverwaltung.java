@@ -70,7 +70,7 @@ public class Risikoverwaltung implements Serializable{
             }
     }
 
-    public void deserialsierung(File file){
+    public void deserialsierung(File file){     // Praktikum 9
 
         try ( FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis)) {

@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "HashTableTest",
+      "request": "launch",
+      "mainClass": "HashTableTest",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "Suche",
+      "request": "launch",
+      "mainClass": "Algo.Ueb11_Suche.Suche",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/mika/Uni/Rub/Praktikum/Pk5",
+      "program": "/home/mika/Uni/Rub/Praktikum/Pk5/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
