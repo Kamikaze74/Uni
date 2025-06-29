@@ -10,21 +10,20 @@ import javafx.stage.Stage;
 
 public class RisikoverwaltungView extends RisikoErfassungView {
 
-    public RisikoverwaltungView(RisikoView risiko, Stage primaryStage) {
-        super(risiko, primaryStage);
-        this.initOwner(primaryStage);
+    public RisikoverwaltungView(Stage primaryStage) {
+        super(primaryStage);
 
         VBox layout = new VBox(15);
         layout.setPadding(new javafx.geometry.Insets(20));
-        
+
         Label beschriftung = new Label("Risikoverwaltung");
         beschriftung.setFont(Font.font(16));
 
         Button erfassungOeffnenButton = new Button("Risiko erfassen");
-        
+
         // Beim Klick auf den Button wird ein neues Fenster geöffnet
             erfassungOeffnenButton.setOnAction(e -> {
-            Risikoerfassung erfassung = new Risikoerfassung(risiko, primaryStage);
+            AkzeptablesRisikoView erfassung = new AkzeptablesRisikoView(primaryStage);
             erfassung.initModality(Modality.WINDOW_MODAL); // blockiert Hauptfenster
             erfassung.initOwner(this); // Risikoverwaltung ist Besitzer
             erfassung.showAndWait(); // blockiert bis Fenster geschlossen wird

@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Risiko implements Serializable{
-    
+
     private int id;
     private String bezeichnung;
     private float eintrittswahrscheinlichkeit;
@@ -45,7 +45,7 @@ public abstract class Risiko implements Serializable{
     public float berechneRisikowert(){
         return eintrittswahrscheinlichkeit * kosten_im_schadenfall;
     }
-    
+
     public abstract float ermittleRueckstellung();
     public abstract void druckeDaten(OutputStream stream);
 }

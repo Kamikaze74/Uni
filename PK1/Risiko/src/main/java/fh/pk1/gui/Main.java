@@ -6,8 +6,8 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	public void start(Stage primaryStage){
-        
-		RisikoverwaltungView verwatung = new RisikoverwaltungView(null, primaryStage);
+
+		RisikoverwaltungView verwatung = new RisikoverwaltungView(primaryStage);
 		verwatung.showView();
 	}
 

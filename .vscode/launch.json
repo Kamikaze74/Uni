@@ -3,6 +3,25 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CopyBenchmark",
+      "request": "launch",
+      "mainClass": "CopyBenchmark"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "fh.pk1.gui.Main",
+      "projectName": "sample"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "Main",

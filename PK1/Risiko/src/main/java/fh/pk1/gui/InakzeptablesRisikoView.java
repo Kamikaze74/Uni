@@ -11,9 +11,8 @@ import javafx.stage.Stage;
 public class InakzeptablesRisikoView extends RisikoErfassungView{
 
 
-    public InakzeptablesRisikoView(RisikoView risiko, Stage primaryStage) {
-        super(risiko, primaryStage);
-        this.initOwner(primaryStage);
+    public InakzeptablesRisikoView(Stage primaryStage) {
+        super(primaryStage);
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
@@ -22,7 +21,7 @@ public class InakzeptablesRisikoView extends RisikoErfassungView{
 
         Label beschriftung = new Label("Erfassung inakzeptables Risiko");
         beschriftung.setFont(Font.font(16));
-        
+
 
         GridPane inputGrid = new GridPane();
         inputGrid.setHgap(10);
@@ -51,10 +50,10 @@ public class InakzeptablesRisikoView extends RisikoErfassungView{
         Scene scene = new Scene(root, 400, 250);
         setScene(scene);
     }
-    
+
 
     public void showView() {
         this.show();
     }
-    
+
 }

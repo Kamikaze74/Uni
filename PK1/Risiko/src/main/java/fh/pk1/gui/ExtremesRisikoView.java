@@ -11,9 +11,8 @@ import javafx.stage.Stage;
 public class ExtremesRisikoView extends RisikoErfassungView{
 
 
-    public ExtremesRisikoView(RisikoView risiko, Stage primaryStage) {
-        super(risiko, primaryStage);
-        this.initOwner(primaryStage);
+    public ExtremesRisikoView(Stage primaryStage) {
+        super(primaryStage);
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
@@ -22,7 +21,7 @@ public class ExtremesRisikoView extends RisikoErfassungView{
 
         Label beschriftung = new Label("Erfassung extremes Risiko");
         beschriftung.setFont(Font.font(16));
-        
+
 
         GridPane inputGrid = new GridPane();
         inputGrid.setHgap(10);

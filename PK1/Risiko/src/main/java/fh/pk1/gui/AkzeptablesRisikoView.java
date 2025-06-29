@@ -7,21 +7,19 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Risikoerfassung extends RisikoErfassungView{
+public class AkzeptablesRisikoView extends RisikoErfassungView{
 
-    public Risikoerfassung(RisikoView risiko, Stage primaryStage) {
-        super(risiko, primaryStage);
-        this.initOwner(primaryStage);
+    public AkzeptablesRisikoView(Stage primaryStage) {
+        super (primaryStage);
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
         root.setAlignment(Pos.TOP_CENTER);
 
 
-
         Label beschriftung = new Label("Risikoerfassung");
         beschriftung.setFont(Font.font(16));
-        
+
 
         GridPane inputGrid = new GridPane();
         inputGrid.setHgap(10);
@@ -35,7 +33,7 @@ public class Risikoerfassung extends RisikoErfassungView{
         TextField tf3 = new TextField("Vorgabe");
         tf3.setPrefWidth(250);
 
-        
+
         inputGrid.addRow(1, new Label("Bezeichnung:"), tf1);
         inputGrid.addRow(2, new Label("Eintrittswahrscheinlichkeit:"), tf2);
         inputGrid.addRow(3, new Label("Kosten im Schadensfall:"), tf3);
