@@ -45,13 +45,12 @@ public class InakzeptablesRisikoBean extends RisikoBean {
             Formatter formatter = new Formatter(osw)) {
 
             formatter.format(
-                "Id %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n",
+                "%nId %d %s \"%s\" aus %d/%d;\nRueckstellung %.2f;\nMaßnahme \"%s\"\n",
                 getId(),
                 getClass().getName(),
                 getBezeichnung(),
                 getErstellungsdatum().getMonthValue(),
                 getErstellungsdatum().getYear(),
-                berechneRisikowert(),
                 ermittleRueckstellung(),
                 getMaßnahme()
             );

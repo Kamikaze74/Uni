@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Graph",
+      "request": "launch",
+      "mainClass": "Graph",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
+      "name": "test",
+      "request": "launch",
+      "mainClass": "test",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
       "name": "CopyBenchmark",
       "request": "launch",
       "mainClass": "CopyBenchmark"

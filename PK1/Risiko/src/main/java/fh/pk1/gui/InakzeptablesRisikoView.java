@@ -1,5 +1,7 @@
 package fh.pk1.gui;
 
+import fh.pk1.beans.InakzeptablesRisikoBean;
+import fh.pk1.beans.RisikoBean;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,9 +12,12 @@ import javafx.stage.Stage;
 
 public class InakzeptablesRisikoView extends RisikoErfassungView{
 
+    InakzeptablesRisikoBean newBean = null;
 
-    public InakzeptablesRisikoView(Stage primaryStage) {
-        super(primaryStage);
+    public InakzeptablesRisikoView(Stage primaryStage, RisikoBean bean) {
+        super(primaryStage, bean);
+        convertBean(bean);
+
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
@@ -31,7 +36,7 @@ public class InakzeptablesRisikoView extends RisikoErfassungView{
         TextField tf1 = new TextField("Vorgabe");
         tf1.setPrefWidth(250);
 
-        inputGrid.addRow(1, new Label("Bezeichnung: TODO")); // Bezeichnung muss von Risikoerfassung übergeben werden
+        inputGrid.addRow(1, new Label(bean.getBezeichnung())); // Bezeichnung muss von Risikoerfassung übergeben werden
         inputGrid.addRow(2, new Label("Maßnahme:"), tf1);
 
 
@@ -44,6 +49,15 @@ public class InakzeptablesRisikoView extends RisikoErfassungView{
         buttonPane.getChildren().addAll(neu, abbrechen);
         VBox.setMargin(buttonPane, new Insets(20, 0, 0, 0));
 
+        neu.setOnAction(e -> {
+            newBean.setMaßnahme(tf1.getText());
+            wurdeGespeichert = true;
+            close();
+        });
+
+        abbrechen.setOnAction(e -> {
+            close();
+        });
 
         root.getChildren().addAll(beschriftung, inputGrid, buttonPane);
 
@@ -51,9 +65,19 @@ public class InakzeptablesRisikoView extends RisikoErfassungView{
         setScene(scene);
     }
 
+    public void convertBean(RisikoBean bean){
+        newBean = new InakzeptablesRisikoBean();
+        newBean.setBezeichnung(bean.getBezeichnung());
+        newBean.setEintrittswahrscheinlichkeit(bean.getEintrittswahrscheinlichkeit());
+        newBean.setKosten_im_schadenfall(bean.getKosten_im_schadenfall());
+    }
+
+    @Override
+    public InakzeptablesRisikoBean getBean(){
+        return newBean;
+    }
 
     public void showView() {
         this.show();
     }
-
 }

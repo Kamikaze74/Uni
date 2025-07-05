@@ -1,8 +1,14 @@
 package fh.pk1.gui;
 
+import fh.pk1.beans.*;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -10,30 +16,83 @@ import javafx.stage.Stage;
 
 public class RisikoverwaltungView extends RisikoErfassungView {
 
-    public RisikoverwaltungView(Stage primaryStage) {
-        super(primaryStage);
+    RisikoverwaltungBean beans = new RisikoverwaltungBean();
+
+    public RisikoverwaltungView(Stage primaryStage, RisikoBean bean) {
+        super(primaryStage, bean);
 
         VBox layout = new VBox(15);
-        layout.setPadding(new javafx.geometry.Insets(20));
+        layout.setPadding(new javafx.geometry.Insets(20,0,20,0));
+        layout.setAlignment(Pos.TOP_CENTER);
+
 
         Label beschriftung = new Label("Risikoverwaltung");
         beschriftung.setFont(Font.font(16));
 
+
+        MenuBar bar = new MenuBar();
+        Menu datei = new Menu("Datei");
+        Menu risiko = new Menu("Risiko");
+        Menu anzeige = new Menu("Anzeige");
+
+        MenuItem laden = new MenuItem("Laden");
+        MenuItem speichern = new MenuItem("Speichern");
+        MenuItem risikolisteInDatei = new MenuItem("Risiko in Datei");
+        MenuItem beenden = new MenuItem("Beenden");
+        MenuItem neusRisiko = new MenuItem("Neues Risiko");
+        MenuItem maxiRueckstellug = new MenuItem("Risiko mit maximaler Rückstellung");
+        MenuItem summeAllerRückstellungen = new MenuItem("Summe aller Rückstellungen");
+
+        datei.getItems().addAll(laden, new SeparatorMenuItem(), speichern, new SeparatorMenuItem(), risikolisteInDatei, new SeparatorMenuItem(), beenden);
+        risiko.getItems().addAll(neusRisiko);
+        anzeige.getItems().addAll(maxiRueckstellug, new SeparatorMenuItem(), summeAllerRückstellungen);
+
+        bar.getMenus().addAll(datei, risiko, anzeige);
+
         Button erfassungOeffnenButton = new Button("Risiko erfassen");
 
-        // Beim Klick auf den Button wird ein neues Fenster geöffnet
-            erfassungOeffnenButton.setOnAction(e -> {
-            AkzeptablesRisikoView erfassung = new AkzeptablesRisikoView(primaryStage);
-            erfassung.initModality(Modality.WINDOW_MODAL); // blockiert Hauptfenster
-            erfassung.initOwner(this); // Risikoverwaltung ist Besitzer
-            erfassung.showAndWait(); // blockiert bis Fenster geschlossen wird
+        erfassungOeffnenButton.setOnAction(e -> {
+            AkzeptablesRisikoView erfassung = new AkzeptablesRisikoView(primaryStage, new AkzeptablesRisikoBean());
+            RisikoBean aBean = openWindow(erfassung);
+
+            if (aBean == null)
+                return;
+            
+            if (aBean.getKosten_im_schadenfall() >= 1000000.00) {
+                ExtremesRisikoView view = new ExtremesRisikoView(primaryStage, aBean);
+                RisikoBean extremesBean = openWindow(view);
+                if (extremesBean != null) {
+                    beans.add(extremesBean);
+                    System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
+                }
+            }else if (aBean.berechneRisikowert() >= 10000.00) {
+                InakzeptablesRisikoView view = new InakzeptablesRisikoView(primaryStage, aBean);
+                RisikoBean inakzeptabelBean = openWindow(view);
+                if (inakzeptabelBean != null) {
+                    beans.add(inakzeptabelBean);
+                    System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
+                }
+            } else {
+                beans.add(aBean);
+                System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
+            }
         });
 
 
-        layout.getChildren().addAll(beschriftung, erfassungOeffnenButton);
+        layout.getChildren().addAll(beschriftung, bar);
 
         Scene scene = new Scene(layout, 300, 200);
         this.setScene(scene);
+    }
+
+    private RisikoBean openWindow(RisikoErfassungView view){
+        view.initModality(Modality.WINDOW_MODAL); // blockiert Hauptfenster
+        view.initOwner(this); // Risikoverwaltung ist Besitzer
+        view.showAndWait();
+        if (view.isGespeichert()) {
+            return view.getBean();
+        }
+        return null;
     }
 
     public void showView() {

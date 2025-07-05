@@ -1,5 +1,6 @@
 package fh.pk1.gui;
 
+import fh.pk1.beans.RisikoBean;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,8 +10,8 @@ import javafx.stage.Stage;
 
 public class AkzeptablesRisikoView extends RisikoErfassungView{
 
-    public AkzeptablesRisikoView(Stage primaryStage) {
-        super (primaryStage);
+    public AkzeptablesRisikoView(Stage primaryStage, RisikoBean bean) {
+        super (primaryStage, bean);
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
@@ -33,7 +34,6 @@ public class AkzeptablesRisikoView extends RisikoErfassungView{
         TextField tf3 = new TextField("Vorgabe");
         tf3.setPrefWidth(250);
 
-
         inputGrid.addRow(1, new Label("Bezeichnung:"), tf1);
         inputGrid.addRow(2, new Label("Eintrittswahrscheinlichkeit:"), tf2);
         inputGrid.addRow(3, new Label("Kosten im Schadensfall:"), tf3);
@@ -48,6 +48,18 @@ public class AkzeptablesRisikoView extends RisikoErfassungView{
         buttonPane.getChildren().addAll(neu, abbrechen);
         VBox.setMargin(buttonPane, new Insets(20, 0, 0, 0));
 
+
+        neu.setOnAction(e -> {
+            bean.setBezeichnung(tf1.getText());
+            bean.setEintrittswahrscheinlichkeit(Float.valueOf(tf2.getText()));
+            bean.setKosten_im_schadenfall(Float.valueOf(tf3.getText()));
+            wurdeGespeichert = true;
+            close();
+        });
+
+        abbrechen.setOnAction(e -> {
+            close();
+        });
 
         root.getChildren().addAll(beschriftung, inputGrid, buttonPane);
 
