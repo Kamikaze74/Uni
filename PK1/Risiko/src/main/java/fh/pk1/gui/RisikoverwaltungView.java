@@ -3,14 +3,11 @@ package fh.pk1.gui;
 import fh.pk1.beans.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,15 +18,12 @@ public class RisikoverwaltungView extends RisikoErfassungView {
     public RisikoverwaltungView(Stage primaryStage, RisikoBean bean) {
         super(primaryStage, bean);
 
+        this.setTitle("Risikoverwaltung");
         VBox layout = new VBox(15);
-        layout.setPadding(new javafx.geometry.Insets(20,0,20,0));
-        layout.setAlignment(Pos.TOP_CENTER);
+        layout.setAlignment(Pos.TOP_LEFT);
 
-
-        Label beschriftung = new Label("Risikoverwaltung");
-        beschriftung.setFont(Font.font(16));
-
-
+//      ------------------------------------------------------    //
+//      ------------------ MENÜLEISTE -----------------------    //
         MenuBar bar = new MenuBar();
         Menu datei = new Menu("Datei");
         Menu risiko = new Menu("Risiko");
@@ -49,15 +43,14 @@ public class RisikoverwaltungView extends RisikoErfassungView {
 
         bar.getMenus().addAll(datei, risiko, anzeige);
 
-        Button erfassungOeffnenButton = new Button("Risiko erfassen");
-
-        erfassungOeffnenButton.setOnAction(e -> {
+//      ------------------ AKTIONEN --------------------------    //
+        neusRisiko.setOnAction(e -> {
             AkzeptablesRisikoView erfassung = new AkzeptablesRisikoView(primaryStage, new AkzeptablesRisikoBean());
             RisikoBean aBean = openWindow(erfassung);
 
             if (aBean == null)
                 return;
-            
+
             if (aBean.getKosten_im_schadenfall() >= 1000000.00) {
                 ExtremesRisikoView view = new ExtremesRisikoView(primaryStage, aBean);
                 RisikoBean extremesBean = openWindow(view);
@@ -77,14 +70,15 @@ public class RisikoverwaltungView extends RisikoErfassungView {
                 System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
             }
         });
+//      ------------------------------------------------------    //
+//      ------------------ VBox ------------------------------    //
+        layout.getChildren().addAll(bar);
 
-
-        layout.getChildren().addAll(beschriftung, bar);
-
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(layout, 500, 750);
         this.setScene(scene);
     }
-
+//      ------------------------------------------------------    //
+//      ------------------ METHODEN --------------------------    //
     private RisikoBean openWindow(RisikoErfassungView view){
         view.initModality(Modality.WINDOW_MODAL); // blockiert Hauptfenster
         view.initOwner(this); // Risikoverwaltung ist Besitzer
