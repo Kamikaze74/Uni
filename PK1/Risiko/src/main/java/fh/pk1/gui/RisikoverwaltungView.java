@@ -1,13 +1,17 @@
 package fh.pk1.gui;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
+import fh.pk1.fachebene.Risiko;
+import fh.pk1.fachebene.Risikoverwaltung;
 import fh.pk1.gui.beans.*;
 import fh.pk1.gui.guiutil.pk1.gui.util.MessageView;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -70,6 +74,53 @@ public class RisikoverwaltungView extends RisikoErfassungView {
 
 //      ------------------------------------------------------    //
 //      ------------------ AKTIONEN --------------------------    //
+        laden.setOnAction(e -> {
+            // TODO: Ladefunktion implementieren
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Risiko-Datei laden");
+            File file = fileChooser.showOpenDialog(primaryStage);
+
+            Risikoverwaltung verwaltung = new Risikoverwaltung();
+            verwaltung.deserialsierung(file);
+
+            for (Risiko r : verwaltung.getRisikos()) {
+
+                RisikoBean risikoBean = null;
+                if (r instanceof fh.pk1.fachebene.AkzeptablesRisiko) {
+                    risikoBean = new AkzeptablesRisikoBean();
+                } else if (r instanceof fh.pk1.fachebene.ExtremesRisiko) {
+                    risikoBean = new ExtremesRisikoBean();
+                } else if (r instanceof fh.pk1.fachebene.InakzeptablesRisiko) {
+                    risikoBean = new InakzeptablesRisikoBean();
+                }
+                if (risikoBean != null) {
+                    risikoBean.fromFE(r);
+                    beans.add(risikoBean);
+                }
+            }
+            listView.getItems().clear();
+            String[] risiken = beans.zeigeRisiken().split("\\r?\\n");
+            listView.getItems().addAll(risiken);
+        });
+
+        speichern.setOnAction(e -> {
+            // TODO: Ladefunktion implementieren
+            Risikoverwaltung verwaltung = new Risikoverwaltung();
+            for (RisikoBean risikoBeanItem : beans.getRisikos()) {
+                verwaltung.getRisikos().add(risikoBeanItem.toFE());
+            }
+            verwaltung.serialsierung();
+        });
+
+        risikolisteInDatei.setOnAction(event -> {
+            Risikoverwaltung verwaltung = new Risikoverwaltung();
+            for (RisikoBean risikoBeanItem : beans.getRisikos()) {
+                verwaltung.getRisikos().add(risikoBeanItem.toFE());
+            }
+            verwaltung.listeInDatei("risikoliste.txt");
+            MessageView messageView = MessageView.create(primaryStage, "Risikoliste gespeichert", "Die Risikoliste wurde erfolgreich gespeichert.");
+        });
+
         beenden.setOnAction(e -> {
             this.close();
         });

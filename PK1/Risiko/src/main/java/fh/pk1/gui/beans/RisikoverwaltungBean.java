@@ -12,6 +12,9 @@ public class RisikoverwaltungBean {
 
     private final ObservableList<RisikoBean> risikos = FXCollections.observableArrayList(); // new SimpleObjectProperty<LinkedList<Risiko>>();
 
+    public ObservableList<RisikoBean> getRisikos() {
+        return risikos;
+    }
     public void add(RisikoBean risiko) {
         risiko.setId(fixId());
         risikos.add(risiko);

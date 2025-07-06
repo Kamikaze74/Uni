@@ -3,13 +3,19 @@ package fh.pk1.fachebene;
 import java.io.*;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
+
+import fh.pk1.gui.beans.RisikoBean;
 
 public class Risikoverwaltung implements Serializable{
 
     private static final long serialVersionUID = -729034045372955790L;
     LinkedList<Risiko> risikos = new LinkedList<Risiko>();
 
+    public LinkedList<Risiko> getRisikos() {
+        return risikos;
+    }
     public void add(AkzeptablesRisiko risiko) {
         risiko.setId(fixId());
         risikos.add(risiko);
@@ -34,6 +40,10 @@ public class Risikoverwaltung implements Serializable{
         return ausgabe;
     }
 
+    public Iterator<Risiko> iterator() {
+        return risikos.iterator();
+    }
+
     public String sucheRisikoMitmaxRueckstellung() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -55,15 +65,30 @@ public class Risikoverwaltung implements Serializable{
         return summe;
     }
 
+    public void listeInDatei(String dateiName){
+
+    File datei = new File(dateiName);
+
+    try (FileOutputStream fos = new FileOutputStream(datei);
+        OutputStreamWriter osw = new OutputStreamWriter(fos)) {
+
+        osw.write(zeigeRisiken());
+
+    } catch (IOException e) {
+
+        e.printStackTrace();
+        }
+    }
+
     public void serialsierung(){
 
-        File datei = new File("Objekte");
-    
-        try (FileOutputStream fos = new FileOutputStream(datei);
+        File file = new File("C:\\Users\\mikai\\Documents\\Uni\\PK1\\Risiko\\src\\main\\java\\fh\\pk1\\datenhaltung\\daten");
+
+        try (FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream osw = new ObjectOutputStream(fos)) {
-    
+
             osw.writeObject(risikos);
-    
+
         } catch (IOException e) {
             System.out.println("Fehler bei der Serialisierung");
             e.printStackTrace();

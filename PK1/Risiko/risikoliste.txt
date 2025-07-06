@@ -1,0 +1,2 @@
+Id 0 fh.pk1.fachebene.AkzeptablesRisiko "haha" aus 7/2025;
+ Risikowert 1080,00; Rueckstellung 0,20
