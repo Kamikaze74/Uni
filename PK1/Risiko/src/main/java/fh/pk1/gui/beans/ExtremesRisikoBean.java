@@ -1,4 +1,4 @@
-package fh.pk1.beans;
+package fh.pk1.gui.beans;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -6,8 +6,8 @@ import java.io.OutputStreamWriter;
 import java.util.Formatter;
 import java.util.Objects;
 
-import fh.pk1.fachebene.*;
-
+import fh.pk1.fachebene.ExtremesRisiko;
+import fh.pk1.fachebene.Risiko;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 
@@ -30,7 +30,7 @@ public class ExtremesRisikoBean extends InakzeptablesRisikoBean{
             Formatter formatter = new Formatter(osw)) {
 
             formatter.format(
-                "%nId %d %s \"%s\" aus %d/%d;\nRisikowert %.2f; Rueckstellung %.2f;\nMaßnahme \"%s\"\n",
+                "Id %d %s \"%s\" aus %d/%d; Risikowert %.2f; Rueckstellung %.2f; Maßnahme \"%s\"\n",
                 getId(),
                 getClass().getName(),
                 getBezeichnung(),

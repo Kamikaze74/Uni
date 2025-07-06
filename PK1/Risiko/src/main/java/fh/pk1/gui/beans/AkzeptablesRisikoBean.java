@@ -1,4 +1,4 @@
-package fh.pk1.beans;
+package fh.pk1.gui.beans;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -6,10 +6,11 @@ import java.io.OutputStreamWriter;
 import java.util.Formatter;
 import java.util.Objects;
 
-import fh.pk1.fachebene.*;
+import fh.pk1.fachebene.AkzeptablesRisiko;
+import fh.pk1.fachebene.Risiko;
 
 public class AkzeptablesRisikoBean extends RisikoBean{
-    
+
     @Override
     public float ermittleRueckstellung() {
         return 0.2f;
@@ -19,9 +20,9 @@ public class AkzeptablesRisikoBean extends RisikoBean{
     public void druckeDaten(OutputStream stream) {
         try (OutputStreamWriter osw = new OutputStreamWriter(stream);
             Formatter formatter = new Formatter(osw)) {
-    
+
             formatter.format(
-                "%nId %d %s \"%s\" aus %d/%d;\nRisikowert %.2f;\n",
+                "Id %d %s \"%s\" aus %d/%d; Risikowert %.2f\n",
                 getId(),
                 getClass().getName(),
                 getBezeichnung(),
@@ -30,13 +31,13 @@ public class AkzeptablesRisikoBean extends RisikoBean{
                 berechneRisikowert()
             );
             formatter.flush();
-    
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("IOException beim Schreiben von Risiko-Daten");
         }
     }
-    
+
 
     @Override
     public boolean equals(Object o) {

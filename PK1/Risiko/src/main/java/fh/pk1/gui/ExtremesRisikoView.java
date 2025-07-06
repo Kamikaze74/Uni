@@ -1,7 +1,7 @@
 package fh.pk1.gui;
 
-import fh.pk1.beans.ExtremesRisikoBean;
-import fh.pk1.beans.RisikoBean;
+import fh.pk1.gui.beans.ExtremesRisikoBean;
+import fh.pk1.gui.beans.RisikoBean;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -61,7 +61,7 @@ public class ExtremesRisikoView extends RisikoErfassungView{
         abbrechen.setOnAction(e -> {
             close();
         });
-        
+
         root.getChildren().addAll(beschriftung, inputGrid, buttonPane);
 
         Scene scene = new Scene(root, 450, 250);

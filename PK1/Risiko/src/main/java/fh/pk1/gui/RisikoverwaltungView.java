@@ -1,12 +1,12 @@
 package fh.pk1.gui;
 
-import fh.pk1.beans.*;
+import java.io.ByteArrayOutputStream;
+
+import fh.pk1.gui.beans.*;
+import fh.pk1.gui.guiutil.pk1.gui.util.MessageView;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,10 +17,34 @@ public class RisikoverwaltungView extends RisikoErfassungView {
 
     public RisikoverwaltungView(Stage primaryStage, RisikoBean bean) {
         super(primaryStage, bean);
-
         this.setTitle("Risikoverwaltung");
-        VBox layout = new VBox(15);
+
+//      ------------------ VBox/ListView ------------------------------    //
+        VBox layout = new VBox(0);
         layout.setAlignment(Pos.TOP_LEFT);
+        ListView<String> listView = new ListView<>();
+        VBox.setVgrow(listView, javafx.scene.layout.Priority.ALWAYS);
+        listView.getSelectionModel().selectFirst();
+        listView.requestFocus();
+        listView.setCellFactory(lv -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setPrefHeight(25); // Zeilengröße auf 25 Pixel setzen
+                setText(item);
+                if (!empty) {
+                    if (isFocused()) {
+                        setStyle("-fx-background-color: #90caf9;"); // hellblau für Fokus
+                    } else if (getIndex() % 2 == 0) {
+                        setStyle("-fx-background-color: lightgray;");
+                    } else {
+                        setStyle("-fx-background-color: white;");
+                    }
+                } else {
+                    setStyle("");
+                }
+            }
+        });
 
 //      ------------------------------------------------------    //
 //      ------------------ MENÜLEISTE -----------------------    //
@@ -42,8 +66,14 @@ public class RisikoverwaltungView extends RisikoErfassungView {
         anzeige.getItems().addAll(maxiRueckstellug, new SeparatorMenuItem(), summeAllerRückstellungen);
 
         bar.getMenus().addAll(datei, risiko, anzeige);
+        layout.getChildren().addAll(bar, listView);
 
+//      ------------------------------------------------------    //
 //      ------------------ AKTIONEN --------------------------    //
+        beenden.setOnAction(e -> {
+            this.close();
+        });
+
         neusRisiko.setOnAction(e -> {
             AkzeptablesRisikoView erfassung = new AkzeptablesRisikoView(primaryStage, new AkzeptablesRisikoBean());
             RisikoBean aBean = openWindow(erfassung);
@@ -69,12 +99,39 @@ public class RisikoverwaltungView extends RisikoErfassungView {
                 beans.add(aBean);
                 System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
             }
+            listView.getItems().clear();
+            String[] risiken = beans.zeigeRisiken().split("\\r?\\n");
+            listView.getItems().addAll(risiken);
+            //listView.refresh(); Nur wenn sich in dem Risiko Objekt etwas geändert hat, was wir nicht implementieren
+        });
+
+        maxiRueckstellug.setOnAction(e -> {
+            RisikoBean maxRueckstellung = beans.sucheRisikoMitmaxRueckstellung();
+            if (maxRueckstellung != null) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                maxRueckstellung.druckeDaten(baos);
+                MessageView messageView = MessageView.create(primaryStage, "Maximale Rückstellung", baos.toString());
+                messageView.showView();
+            } else {
+                MessageView messageView = MessageView.create(primaryStage, "Maximale Rückstellung", "Es wurde kein Risiko mit einer Rückstellung gefunden.");
+                messageView.showView();
+            }
+        });
+
+        summeAllerRückstellungen.setOnAction(e -> {
+            float summe = beans.berechneSummeRueckstellungen();
+            if (summe > 0) {
+                MessageView messageView = MessageView.create(primaryStage, "Summe aller Rückstellungen", "Die Summe aller Rückstellungen beträgt: " + summe);
+                messageView.showView();
+            } else {
+                MessageView messageView = MessageView.create(primaryStage, "Summe aller Rückstellungen", "Es wurden keine Rückstellungen gefunden.");
+                messageView.showView();
+            }
+
         });
 //      ------------------------------------------------------    //
-//      ------------------ VBox ------------------------------    //
-        layout.getChildren().addAll(bar);
-
-        Scene scene = new Scene(layout, 500, 750);
+//      -------------------Fenster----------------------------    //
+        Scene scene = new Scene(layout, 700, 400);
         this.setScene(scene);
     }
 //      ------------------------------------------------------    //

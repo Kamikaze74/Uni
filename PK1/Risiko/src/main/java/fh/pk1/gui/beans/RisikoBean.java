@@ -1,4 +1,4 @@
-package fh.pk1.beans;
+package fh.pk1.gui.beans;
 
 import java.io.OutputStream;
 import java.time.LocalDate;

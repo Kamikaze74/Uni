@@ -1,4 +1,4 @@
-package fh.pk1.beans;
+package fh.pk1.gui.beans;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -45,7 +45,7 @@ public class InakzeptablesRisikoBean extends RisikoBean {
             Formatter formatter = new Formatter(osw)) {
 
             formatter.format(
-                "%nId %d %s \"%s\" aus %d/%d;\nRueckstellung %.2f;\nMaßnahme \"%s\"\n",
+                "Id %d %s \"%s\" aus %d/%d; Rueckstellung %.2f; Maßnahme \"%s\"\n",
                 getId(),
                 getClass().getName(),
                 getBezeichnung(),
@@ -70,11 +70,11 @@ public class InakzeptablesRisikoBean extends RisikoBean {
         if (o.getClass() != getClass()) return false;
         InakzeptablesRisikoBean that = (InakzeptablesRisikoBean) o;
         return Objects.equals(getMaßnahme(), that.getMaßnahme());
-        
+
     }
     @Override
     public int hashCode(){
-    
+
         return Objects.hash(getBezeichnung(), getEintrittswahrscheinlichkeit(), getKosten_im_schadenfall(), getMaßnahme());
     }
 }

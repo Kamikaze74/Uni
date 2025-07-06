@@ -1,8 +1,9 @@
-package fh.pk1.beans;
+package fh.pk1.gui.beans;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,10 @@ public class RisikoverwaltungBean {
         risikos.add(risiko);
     }
 
+    public Iterator<RisikoBean> iterator() {
+        return risikos.iterator();
+    }
+
     public String zeigeRisiken() {
         aufSortieren();
         String ausgabe = "";
@@ -35,16 +40,14 @@ public class RisikoverwaltungBean {
         return ausgabe;
     }
 
-    public String sucheRisikoMitmaxRueckstellung() {
+    public RisikoBean sucheRisikoMitmaxRueckstellung() {
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         RisikoBean max = risikos.get(0);
         for (RisikoBean a: risikos){
             if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
                 max = a;
         }
-        max.druckeDaten(baos);
-        return baos.toString();
+        return max;
     }
 
     public float berechneSummeRueckstellungen() {

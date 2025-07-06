@@ -1,6 +1,6 @@
 package fh.pk1.gui;
 
-import fh.pk1.beans.RisikoBean;
+import fh.pk1.gui.beans.RisikoBean;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;

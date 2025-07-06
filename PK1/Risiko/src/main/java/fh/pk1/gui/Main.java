@@ -1,6 +1,6 @@
 package fh.pk1.gui;
 
-import fh.pk1.beans.AkzeptablesRisikoBean;
+import fh.pk1.gui.beans.AkzeptablesRisikoBean;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
