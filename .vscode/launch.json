@@ -3,6 +3,12 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Timer",
+      "request": "launch",
+      "mainClass": "Timer"
+    },
+    {
+      "type": "java",
       "name": "Graph",
       "request": "launch",
       "mainClass": "Graph",
