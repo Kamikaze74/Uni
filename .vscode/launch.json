@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Zeitansage",
+      "request": "launch",
+      "mainClass": "com.example/com.Zeitansage",
+      "projectName": "timer"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "PK1.timer.src.main.java.com.example.Main",
+      "projectName": "Uni_5b360094"
+    },
+    {
+      "type": "java",
       "name": "Timer",
       "request": "launch",
       "mainClass": "Timer"
