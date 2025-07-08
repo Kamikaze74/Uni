@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>com.example.MainApp</mainClass>
+        <mainClass>com.Zeitansage</mainClass>
     </properties>
 
     <dependencies>
@@ -28,6 +28,7 @@
     </dependencies>
 
     <build>
+
         <plugins>
             <!-- adds file to let you run program outside of IDE -->
             <plugin>
