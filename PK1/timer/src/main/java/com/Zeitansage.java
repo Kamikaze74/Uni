@@ -26,6 +26,13 @@ public class Zeitansage extends Application {
         view.showView();
 
         a.interrupt(); // ohne interrupt beendet sich das Programm nicht
+
+        try {
+            a.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

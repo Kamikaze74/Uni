@@ -150,9 +150,9 @@ public class RisikoverwaltungView extends RisikoErfassungView {
                 beans.add(aBean);
                 System.out.printf("%n%n%n%nDIE ELEMENTE WURDEN HINZUGEFÜGT: %n%s%n%n%n", beans.zeigeRisiken());
             }
-            listView.getItems().clear();
+            //listView.getItems().clear();
             String[] risiken = beans.zeigeRisiken().split("\\r?\\n");
-            listView.getItems().addAll(risiken);
+            listView.getItems().setAll(risiken);
             //listView.refresh(); Nur wenn sich in dem Risiko Objekt etwas geändert hat, was wir nicht implementieren
         });
 

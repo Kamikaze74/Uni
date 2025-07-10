@@ -1,19 +1,19 @@
 package fh.pk1.fachebene;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
-
-import fh.pk1.gui.beans.RisikoBean;
+import java.util.List;
 
 public class Risikoverwaltung implements Serializable{
 
     private static final long serialVersionUID = -729034045372955790L;
-    LinkedList<Risiko> risikos = new LinkedList<Risiko>();
+    List<Risiko> risikos = new ArrayList<Risiko>();
 
-    public LinkedList<Risiko> getRisikos() {
+    public List<Risiko> getRisikos() {
         return risikos;
     }
     public void add(AkzeptablesRisiko risiko) {
@@ -40,6 +40,16 @@ public class Risikoverwaltung implements Serializable{
         return ausgabe;
     }
 
+    /*
+    public void zeigeRisiken() {
+        zeigeRisiken(System.out);
+    }
+    */
+
+    public void zeigeRisiken(OutputStream out) {
+        // TODO
+    }
+
     public Iterator<Risiko> iterator() {
         return risikos.iterator();
     }
@@ -47,7 +57,7 @@ public class Risikoverwaltung implements Serializable{
     public String sucheRisikoMitmaxRueckstellung() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Risiko max = risikos.getFirst();
+        Risiko max = risikos.get(0);
         for (Risiko a: risikos){
             if(a.ermittleRueckstellung() > max.ermittleRueckstellung())
                 max = a;
@@ -73,6 +83,7 @@ public class Risikoverwaltung implements Serializable{
         OutputStreamWriter osw = new OutputStreamWriter(fos)) {
 
         osw.write(zeigeRisiken());
+        // this.zeigeRisiken(osw);
 
     } catch (IOException e) {
 
